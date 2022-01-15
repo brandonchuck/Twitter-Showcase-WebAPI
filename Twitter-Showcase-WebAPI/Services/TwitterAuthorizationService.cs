@@ -47,7 +47,7 @@ namespace Twitter_Showcase_WebAPI.Services
             var authorizationResult = await JsonSerializer.DeserializeAsync<AuthResult>(responseStream);
 
             // return the access_token provided by twitter api
-            return authorizationResult.AccessToken;
+            return authorizationResult.access_token;
         }
 
     }

@@ -5,11 +5,7 @@ namespace Twitter_Showcase_WebAPI.Models
 {
     public class AuthResult
     {
-        [JsonPropertyName("token_type")]
-        public string TokenType { get; set; }
-
-        [JsonPropertyName("access_token")]
-        public string AccessToken { get; set; }
-
+        public string token_type { get; set; }
+        public string access_token { get; set; }
     }
 }

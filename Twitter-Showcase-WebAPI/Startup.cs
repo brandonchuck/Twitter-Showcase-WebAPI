@@ -30,11 +30,11 @@ namespace Twitter_Showcase_WebAPI
                 client.BaseAddress = new Uri("https://api.twitter.com/2/");
             });
 
-            //// get user timeline
-            //services.AddHttpClient<GetUserTimelineService>(client =>
-            //{
-            //    client.BaseAddress = new Uri("https://api.twitter.com/2/");
-            //});
+            // get user timeline
+            services.AddHttpClient<GetUserTimelineService>(client =>
+            {
+                client.BaseAddress = new Uri("https://api.twitter.com/2/");
+            });
 
 
         }

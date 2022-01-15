@@ -1,8 +1,8 @@
 ﻿using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text.Json;
-using System.Threading.Tasks;
-using Twitter_Showcase_WebAPI.Models
+using Twitter_Showcase_WebAPI.Models;
+
 namespace Twitter_Showcase_WebAPI.Services
 {
     public class GetUserDetailsService
