@@ -1,6 +1,7 @@
 ﻿using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text.Json;
+using System.Threading.Tasks;
 using Twitter_Showcase_WebAPI.Models;
 
 namespace Twitter_Showcase_WebAPI.Services
@@ -16,7 +17,7 @@ namespace Twitter_Showcase_WebAPI.Services
 
 
         // uses username from url and bearerToken from api to get the UserDetails object
-        public async int GetUserId(string username, string bearerToken)
+        public async Task<string> GetUserId(string username, string bearerToken)
         {
             // pass authorization headers
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", bearerToken);
@@ -30,10 +31,10 @@ namespace Twitter_Showcase_WebAPI.Services
             using var responseStream = await response.Content.ReadAsStreamAsync();
 
             // return UserDetails object with the UserId property 
-            var userDetails = await JsonSerializer.Deserialize<UserDetails>(responseStream);
+            UserDetails userDetails = await JsonSerializer.Deserialize<UserDetails>(responseStream);
 
-            // return the UserId from the UserDetails object
-            return userDetails.UserId;
+            // return the id from the UserDetails object
+            return userDetails.data.id;
         }
 
     }
