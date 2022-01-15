@@ -31,9 +31,10 @@ namespace Twitter_Showcase_WebAPI.Services
             using var responseStream = await response.Content.ReadAsStreamAsync();
 
             // deserialize Content from GET request
-            var userTweets =  await JsonSerializer.Deserialize<IEnumerable<TweetObject>>(responseStream);
+            var userTimeline = await JsonSerializer.Deserialize<UserTimeline>(responseStream);
 
-            return userTweets;
+            // how can I grab field from different parts of the JSON response?
+            // once I can grb the correct field, then a TweetObject can be built from the fields and put in the list
         }
     }
 }
