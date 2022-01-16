@@ -1,5 +1,4 @@
-﻿using System;
-namespace Twitter_Showcase_WebAPI.Models
+﻿namespace Twitter_Showcase_WebAPI.Models
 {
     public class TweetObject
     {

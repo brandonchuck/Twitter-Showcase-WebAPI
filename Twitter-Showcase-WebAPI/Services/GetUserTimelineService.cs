@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text.Json;
+﻿using System.Net.Http;
 using System.Threading.Tasks;
+using RestSharp;
 using Twitter_Showcase_WebAPI.Models;
 
 namespace Twitter_Showcase_WebAPI.Services
@@ -18,23 +15,17 @@ namespace Twitter_Showcase_WebAPI.Services
             _httpClient = httpClient;
         }
 
-
-        public async Task<IEnumerable<TweetObject>> GetUserTimeline(string userId, string bearerToken)
+        public async Task<UserTimeline> GetUserTimeline(string userId, string bearerToken)
         {
-            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", bearerToken);
+            var client = new RestClient("https://api.twitter.com/2");
 
-            var response = await _httpClient.GetAsync($"users/{userId}/tweets?tweet.fields=created_at,public_metrics,attachments&user.fields=profile_image_url&media.fields=preview_image_url,url&expansions=author_id,attachments.media_keys");
+            var request = new RestRequest($"users/{userId}/tweets?tweet.fields=created_at,public_metrics,attachments&user.fields=profile_image_url&media.fields=preview_image_url,url&expansions=author_id,attachments.media_keys");
 
-            response.EnsureSuccessStatusCode();
+            request.AddHeader("Authorization", $"Bearer {bearerToken}");
 
-            using var responseStream = await response.Content.ReadAsStreamAsync();
+            var response = await client.GetAsync<UserTimeline>(request);
 
-            // deserialize Content from GET request
-            var userTimeline = await JsonSerializer.Deserialize<UserTimeline>(responseStream);
-
-            // how can I grab field from different parts of the JSON response?
-            // Use Linq select here?
-            // once I can grab the correct field, then a TweetObject can be built from the fields and put in the list
+            return response;
         }
     }
 }

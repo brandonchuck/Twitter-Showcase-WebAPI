@@ -1,8 +1,10 @@
-﻿namespace Twitter_Showcase_WebAPI.Models
+﻿using System.Collections.Generic;
+
+namespace Twitter_Showcase_WebAPI.Models
 {
     public class UserTimeline
     {
-        public TweetData[] data { get; set; }
+        public IEnumerable<TweetData> data { get; set; }
         public Includes includes { get; set; }
         public Metadata meta { get; set; }
     }
@@ -36,12 +38,7 @@
     // includes
     public class Includes
     {
-        public Media media { get; set; }
-        public UserInfo users { get; set; }
-    }
-
-    public class Media
-    {
+        public UserData[] users { get; set; }
         public MediaData[] media { get; set; }
     }
 
@@ -53,12 +50,12 @@
         public string type { get; set; }
     }
 
-    public class UserInfo
+    public class UserData
     {
         public string username { get; set; }
+        public string profile_image_url { get; set; }
         public string id { get; set; }
         public string name { get; set; }
-        public string profile_image_url { get; set; }
     }
 
     // metadata
