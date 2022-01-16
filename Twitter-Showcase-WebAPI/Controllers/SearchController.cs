@@ -37,7 +37,7 @@ namespace Twitter_Showcase_WebAPI.Controllers
             // get id from api call; username parameter will come from the route
             string userId = await _getUserDetailsService.GetUserId(username, bearerToken);
 
-            // TODO: if userId is null, meaning there is no user with the specified username, then treat it as content and return tweets
+            // if userId is null, meaning there is no user with the specified username, then treat it as content and return tweets
 
             // get the list of tweets from api call using the user_id
             IEnumerable<TweetObject> userTimeline = await _getUserTimelineService.GetUserTimeline(userId, bearerToken);

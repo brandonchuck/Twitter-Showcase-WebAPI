@@ -1,40 +1,32 @@
-﻿using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text.Json;
+﻿using System;
+using System.Net.Http;
 using System.Threading.Tasks;
+using RestSharp;
 using Twitter_Showcase_WebAPI.Models;
 
 namespace Twitter_Showcase_WebAPI.Services
 {
     public class GetUserDetailsService
     {
-        private HttpClient _httpClient;
 
-        public GetUserDetailsService(HttpClient httpClient)
+        public GetUserDetailsService()
         {
-            _httpClient = httpClient;
         }
 
 
         // uses username from url and bearerToken from api to get the UserDetails object
         public async Task<string> GetUserId(string username, string bearerToken)
         {
-            // pass authorization headers
-            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", bearerToken);
 
-            // make get request
-            var response = await _httpClient.GetAsync($"users/by/username/{username}");
+            var client = new RestClient("https://api.twitter.com/2");
 
-            response.EnsureSuccessStatusCode();
+            var request = new RestRequest($"users/by/username/{username}");
 
-            // get the Content object from the response
-            using var responseStream = await response.Content.ReadAsStreamAsync();
+            request.AddHeader("Authorization", $"Bearer {bearerToken}");
 
-            // return UserDetails object with the UserId property 
-            UserDetails userDetails = await JsonSerializer.Deserialize<UserDetails>(responseStream);
+            var response = await client.GetAsync<UserDetails>(request);
 
-            // return the id from the UserDetails object
-            return userDetails.data.id;
+            return response.data.id;
         }
 
     }
