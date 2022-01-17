@@ -1,20 +1,23 @@
 ﻿<Properties StartupConfiguration="{D47148DF-CDD9-4F93-BBEC-520BDA13F3EF}|Default">
   <MonoDevelop.Ide.Workbench ActiveDocument="Twitter-Showcase-WebAPI/appsettings.json">
     <Files>
-      <File FileName="Twitter-Showcase-WebAPI/Controllers/HomeController.cs" Line="28" Column="1" />
-      <File FileName="Twitter-Showcase-WebAPI/Models/UserDetailsResult.cs" Line="5" Column="2" />
-      <File FileName="Twitter-Showcase-WebAPI/Models/AuthResult.cs" Line="7" Column="6" />
-      <File FileName="Twitter-Showcase-WebAPI/Startup.cs" Line="32" Column="1" />
-      <File FileName="Twitter-Showcase-WebAPI/Services/TwitterAuthorizationService.cs" Line="38" Column="56" />
-      <File FileName="Twitter-Showcase-WebAPI/Services/GetUserTimelineService.cs" Line="11" Column="30" />
-      <File FileName="Twitter-Showcase-WebAPI/appsettings.json" Line="1" Column="1" />
-      <File FileName="Twitter-Showcase-WebAPI/Services/GetUserDetailsService.cs" Line="28" Column="1" NotebookId="1" />
+      <File FileName="Twitter-Showcase-WebAPI/Controllers/HomeController.cs" Line="29" Column="13" />
+      <File FileName="Twitter-Showcase-WebAPI/Models/UserDetailsResult.cs" Line="4" Column="6" />
+      <File FileName="Twitter-Showcase-WebAPI/Models/AuthResult.cs" Line="1" Column="38" />
+      <File FileName="Twitter-Showcase-WebAPI/Services/ITwitterAuthorizationService.cs" Line="9" Column="2" />
+      <File FileName="Twitter-Showcase-WebAPI/Services/GetUserDetailsService.cs" Line="10" Column="1" NotebookId="1" />
+      <File FileName="Twitter-Showcase-WebAPI/Services/GetUserTimelineService.cs" Line="8" Column="66" NotebookId="1" />
+      <File FileName="Twitter-Showcase-WebAPI/Models/UserTimeline.cs" Line="14" Column="6" NotebookId="1" />
+      <File FileName="Twitter-Showcase-WebAPI/Startup.cs" Line="31" Column="10" NotebookId="1" />
+      <File FileName="Twitter-Showcase-WebAPI/Services/TwitterAuthorizationService.cs" Line="26" Column="42" NotebookId="1" />
+      <File FileName="Twitter-Showcase-WebAPI/appsettings.json" Line="7" Column="18" NotebookId="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="Twitter-Showcase-WebAPI" expanded="True">
             <Node name="Twitter-Showcase-WebAPI" expanded="True">
+              <Node name="Dependencies" expanded="True" />
               <Node name="Controllers" expanded="True" />
               <Node name="Models" expanded="True" />
               <Node name="Services" expanded="True" />
@@ -22,6 +25,9 @@
             </Node>
           </Node>
         </State>
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>

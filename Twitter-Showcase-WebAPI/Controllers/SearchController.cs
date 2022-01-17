@@ -8,26 +8,26 @@ using Twitter_Showcase_WebAPI.Services;
 
 namespace Twitter_Showcase_WebAPI.Controllers
 {
-    [Route("/user/search/")]
+    [Route("api/tweets/search")]
     [ApiController]
     public class SearchController : ControllerBase
     {
-        private TwitterAuthorizationService _twitterAuthorizationService;
-        private GetUserDetailsService _getUserDetailsService;
-        private GetUserTimelineService _getUserTimelineService;
+        private ITwitterAuthorizationService _twitterAuthorizationService;
+        private IGetUserDetailsService _getUserDetailsService;
+        private IGetUserTimelineService _getUserTimelineService;
         private IConfiguration _configuration;
 
-        public SearchController(TwitterAuthorizationService twitterAuthorizationService, GetUserTimelineService getUserTimelineService, IConfiguration configuration, GetUserDetailsService getUserDetailsService)
+        public SearchController(ITwitterAuthorizationService twitterAuthorizationService, IGetUserTimelineService getUserTimelineService, IGetUserDetailsService getUserDetailsService, IConfiguration configuration)
         {
             _twitterAuthorizationService = twitterAuthorizationService;
             _getUserDetailsService = getUserDetailsService;
             _getUserTimelineService = getUserTimelineService;
-
+            _configuration = configuration;
         }
 
-        // return list of Tweet objetcts
-        [HttpGet("{username}")]
-        public async Task<string> GetUserTweets([FromRoute] string username)
+        // return list of Tweet objects
+        [HttpGet]
+        public async Task<string> GetUserTweets([FromQuery] string username)
         {
             string bearerToken = await _twitterAuthorizationService.GetBearerToken(_configuration["ApiKey"], _configuration["SecretKey"]);
 
@@ -37,7 +37,5 @@ namespace Twitter_Showcase_WebAPI.Controllers
 
             return JsonSerializer.Serialize(userTimeline); // The timeline should be returned as JSON
         }
-
-
     }
 }

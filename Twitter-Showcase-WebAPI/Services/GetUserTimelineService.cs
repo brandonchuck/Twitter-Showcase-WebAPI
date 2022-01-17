@@ -5,15 +5,8 @@ using Twitter_Showcase_WebAPI.Models;
 
 namespace Twitter_Showcase_WebAPI.Services
 {
-    public class GetUserTimelineService
+    public class GetUserTimelineService : IGetUserTimelineService
     {
-
-        private HttpClient _httpClient;
-
-        public GetUserTimelineService(HttpClient httpClient)
-        {
-            _httpClient = httpClient;
-        }
 
         public async Task<UserTimeline> GetUserTimeline(string userId, string bearerToken)
         {
@@ -23,9 +16,7 @@ namespace Twitter_Showcase_WebAPI.Services
 
             request.AddHeader("Authorization", $"Bearer {bearerToken}");
 
-            var response = await client.GetAsync<UserTimeline>(request);
-
-            return response;
+            return await client.GetAsync<UserTimeline>(request);
         }
     }
 }

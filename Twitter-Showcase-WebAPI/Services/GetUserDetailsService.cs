@@ -4,13 +4,8 @@ using Twitter_Showcase_WebAPI.Models;
 
 namespace Twitter_Showcase_WebAPI.Services
 {
-    public class GetUserDetailsService
+    public class GetUserDetailsService : IGetUserDetailsService
     {
-
-        public GetUserDetailsService()
-        {
-        }
-
 
         // uses username from url and bearerToken from api to get the UserDetails object
         public async Task<string> GetUserId(string username, string bearerToken)
@@ -26,6 +21,5 @@ namespace Twitter_Showcase_WebAPI.Services
 
             return response.data.id;
         }
-
     }
 }

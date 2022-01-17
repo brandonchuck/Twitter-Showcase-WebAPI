@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Twitter_Showcase_WebAPI.Services;
@@ -13,29 +10,23 @@ namespace Twitter_Showcase_WebAPI
 {
     public class Startup
     {
+        public Startup(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
+
+        public IConfiguration Configuration { get; }
+
+
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-
-            // make request to /token 
-            services.AddHttpClient<TwitterAuthorizationService>(client =>
-            {
-                client.BaseAddress = new Uri("https://api.twitter.com/oauth2/");
-            });
-
-            // get user details object
-            services.AddHttpClient<GetUserDetailsService>(client =>
-            {
-                client.BaseAddress = new Uri("https://api.twitter.com/2/");
-            });
-
-            // get user timeline
-            services.AddHttpClient<GetUserTimelineService>(client =>
-            {
-                client.BaseAddress = new Uri("https://api.twitter.com/2/");
-            });
-
+            
+            services.AddScoped<ITwitterAuthorizationService, TwitterAuthorizationService>(); // why do i need this line and how would I know to add this???
+            services.AddScoped<IGetUserDetailsService, GetUserDetailsService>();
+            services.AddScoped<IGetUserTimelineService, GetUserTimelineService>();
+            services.AddControllers();
 
         }
 
@@ -47,7 +38,12 @@ namespace Twitter_Showcase_WebAPI
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseHttpsRedirection();
+
             app.UseRouting();
+
+            app.UseAuthorization();
+
 
             app.UseEndpoints(endpoints =>
             {
