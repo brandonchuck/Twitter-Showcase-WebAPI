@@ -1,5 +1,4 @@
-﻿using System.Net.Http.Headers;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using RestSharp;
 using RestSharp.Authenticators;
 using Twitter_Showcase_WebAPI.Models;
@@ -28,6 +27,5 @@ namespace Twitter_Showcase_WebAPI.Services
 
             return response.access_token;
         }
-
     }
 }

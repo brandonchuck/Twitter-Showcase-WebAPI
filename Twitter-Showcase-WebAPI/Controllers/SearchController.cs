@@ -15,27 +15,33 @@ namespace Twitter_Showcase_WebAPI.Controllers
         private ITwitterAuthorizationService _twitterAuthorizationService;
         private IGetUserDetailsService _getUserDetailsService;
         private IGetUserTimelineService _getUserTimelineService;
+        private IGetContentTweetsService _getContentTweetsService;
         private IConfiguration _configuration;
 
-        public SearchController(ITwitterAuthorizationService twitterAuthorizationService, IGetUserTimelineService getUserTimelineService, IGetUserDetailsService getUserDetailsService, IConfiguration configuration)
+        public SearchController(ITwitterAuthorizationService twitterAuthorizationService, IGetUserTimelineService getUserTimelineService, IGetUserDetailsService getUserDetailsService, IConfiguration configuration, IGetContentTweetsService getContentTweetsService)
         {
             _twitterAuthorizationService = twitterAuthorizationService;
             _getUserDetailsService = getUserDetailsService;
             _getUserTimelineService = getUserTimelineService;
+            _getContentTweetsService = getContentTweetsService;
             _configuration = configuration;
         }
 
         // return list of Tweet objects
         [HttpGet]
-        public async Task<string> GetUserTweets([FromQuery] string username)
+        public async Task<string> GetUserTweets([FromQuery] string searchTerm)
         {
             string bearerToken = await _twitterAuthorizationService.GetBearerToken(_configuration["ApiKey"], _configuration["SecretKey"]);
 
-            string userId = await _getUserDetailsService.GetUserId(username, bearerToken);
+            //string userId = await _getUserDetailsService.GetUserId(searchTerm, bearerToken);
 
-            var userTimeline = await _getUserTimelineService.GetUserTimeline(userId, bearerToken);
+            var recentTweets = await _getContentTweetsService.GetRecentTweets(searchTerm, bearerToken);
 
-            return JsonSerializer.Serialize(userTimeline); // The timeline should be returned as JSON
+            //var userTimeline = await _getUserTimelineService.GetUserTimeline(userId, bearerToken);
+
+            //return JsonSerializer.Serialize(userTimeline); // The timeline should be returned as JSON
+            return JsonSerializer.Serialize(recentTweets);
+
         }
     }
 }

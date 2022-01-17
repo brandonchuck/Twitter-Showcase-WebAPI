@@ -26,6 +26,7 @@ namespace Twitter_Showcase_WebAPI
             services.AddScoped<ITwitterAuthorizationService, TwitterAuthorizationService>(); // why do i need this line and how would I know to add this???
             services.AddScoped<IGetUserDetailsService, GetUserDetailsService>();
             services.AddScoped<IGetUserTimelineService, GetUserTimelineService>();
+            services.AddScoped<IGetContentTweetsService, GetContentTweetsService>();
             services.AddControllers();
 
         }

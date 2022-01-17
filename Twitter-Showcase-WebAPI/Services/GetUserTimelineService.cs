@@ -1,7 +1,6 @@
-﻿using System.Net.Http;
-using System.Threading.Tasks;
-using RestSharp;
+﻿using System.Threading.Tasks;
 using Twitter_Showcase_WebAPI.Models;
+using RestSharp;
 
 namespace Twitter_Showcase_WebAPI.Services
 {
