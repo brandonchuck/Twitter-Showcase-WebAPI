@@ -1,21 +1,23 @@
 ﻿<Properties StartupConfiguration="{D47148DF-CDD9-4F93-BBEC-520BDA13F3EF}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Twitter-Showcase-WebAPI/Services/GetContentTweetsService.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Twitter-Showcase-WebAPI/Services/GetUserTimelineService.cs">
     <Files>
-      <File FileName="Twitter-Showcase-WebAPI/Controllers/HomeController.cs" Line="22" Column="10" />
-      <File FileName="Twitter-Showcase-WebAPI/Models/UserTimeline.cs" Line="57" Column="39" NotebookId="1" />
-      <File FileName="Twitter-Showcase-WebAPI/Services/GetContentTweetsService.cs" Line="10" Column="35" NotebookId="1" />
-      <File FileName="Twitter-Showcase-WebAPI/Services/GetUserTimelineService.cs" Line="4" Column="1" NotebookId="1" />
+      <File FileName="Twitter-Showcase-WebAPI/Controllers/SearchController.cs" Line="42" Column="32" IsPinned="True" />
+      <File FileName="Twitter-Showcase-WebAPI/Models/UserTimeline.cs" Line="19" Column="27" IsPinned="True" />
+      <File FileName="Twitter-Showcase-WebAPI/Startup.cs" Line="25" Column="30" IsPinned="True" />
+      <File FileName="Twitter-Showcase-WebAPI/Credentials.cs" Line="6" Column="47" />
+      <File FileName="Twitter-Showcase-WebAPI/Services/TwitterAuthorizationService.cs" Line="31" Column="1" />
+      <File FileName="Twitter-Showcase-WebAPI/Services/GetUserTimelineService.cs" Line="1" Column="1" NotebookId="1" />
+      <File FileName="Twitter-Showcase-WebAPI/Services/GetContentTweetsService.cs" Line="18" Column="56" NotebookId="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="Twitter-Showcase-WebAPI" expanded="True">
             <Node name="Twitter-Showcase-WebAPI" expanded="True">
-              <Node name="Dependencies" expanded="True" />
               <Node name="Controllers" expanded="True" />
               <Node name="Models" expanded="True" />
               <Node name="Services" expanded="True">
-                <Node name="GetContentTweetsService.cs" selected="True" />
+                <Node name="GetUserTimelineService.cs" selected="True" />
               </Node>
             </Node>
           </Node>
@@ -30,7 +32,9 @@
   <MonoDevelop.Ide.ItemProperties.Twitter-Showcase-WebAPI PreferredExecutionTarget="/Applications/Google Chrome.app" />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/Users/brandonchuck/Desktop/MentorshipProgram/Twitter-Showcase-WebAPI/Twitter-Showcase-WebAPI/App_Start/app.config" relfile="Twitter-Showcase-WebAPI/App_Start/app.config" line="3" column="1" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
 </Properties>

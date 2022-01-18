@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Threading;
+using System.Threading.Tasks;
 using RestSharp;
 using RestSharp.Authenticators;
 using Twitter_Showcase_WebAPI.Models;
@@ -10,7 +11,14 @@ namespace Twitter_Showcase_WebAPI.Services
 
         public async Task<string> GetBearerToken(string apiKey, string secretKey)
         {
-            var client = new RestClient("https://api.twitter.com/oauth2")
+
+            var options = new RestClientOptions("https://api.twitter.com/oauth2")
+            {
+                ThrowOnAnyError = true,
+                Timeout = 1000
+            };
+
+            var client = new RestClient(options)
             {
                 Authenticator = new HttpBasicAuthenticator(apiKey, secretKey)
             };
@@ -19,9 +27,9 @@ namespace Twitter_Showcase_WebAPI.Services
             var request = new RestRequest("token");
 
             // add authorization parameters
+            request.AddParameter("grant_type", "client_credentials");
             request.AddHeader("Content-Type", "application/x-www-form-urlencoded");
             request.AddHeader("Accept", "application/json");
-            request.AddParameter("grant_type", "client_credentials");
 
             var response = await client.PostAsync<AuthResult>(request);
 

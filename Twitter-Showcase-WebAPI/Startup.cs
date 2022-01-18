@@ -22,13 +22,11 @@ namespace Twitter_Showcase_WebAPI
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            
             services.AddScoped<ITwitterAuthorizationService, TwitterAuthorizationService>(); // why do i need this line and how would I know to add this???
             services.AddScoped<IGetUserDetailsService, GetUserDetailsService>();
             services.AddScoped<IGetUserTimelineService, GetUserTimelineService>();
             services.AddScoped<IGetContentTweetsService, GetContentTweetsService>();
             services.AddControllers();
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -42,9 +40,8 @@ namespace Twitter_Showcase_WebAPI
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
-
 
             app.UseEndpoints(endpoints =>
             {

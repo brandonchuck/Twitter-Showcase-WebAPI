@@ -11,6 +11,7 @@
     <None Remove="RestSharp" />
     <None Remove="Services\" />
     <None Remove="Microsoft.AspNet.WebApi.Cors" />
+    <None Remove="Microsoft.AspNetCore.Cors" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
@@ -18,7 +19,7 @@
     <Folder Include="Services\" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="RestSharp" Version="107.0.3" />
-    <PackageReference Include="Microsoft.AspNet.WebApi.Cors" Version="5.2.7" />
+    <PackageReference Include="RestSharp" Version="107.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Cors" Version="2.2.0" />
   </ItemGroup>
 </Project>

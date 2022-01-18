@@ -6,7 +6,6 @@ namespace Twitter_Showcase_WebAPI.Services
 {
     public class GetUserTimelineService : IGetUserTimelineService
     {
-
         public async Task<UserTimeline> GetUserTimeline(string userId, string bearerToken)
         {
             var client = new RestClient("https://api.twitter.com/2");
@@ -15,7 +14,9 @@ namespace Twitter_Showcase_WebAPI.Services
 
             request.AddHeader("Authorization", $"Bearer {bearerToken}");
 
-            return await client.GetAsync<UserTimeline>(request);
+            var timeline = await client.GetAsync<UserTimeline>(request);
+
+            return timeline;
         }
     }
 }
