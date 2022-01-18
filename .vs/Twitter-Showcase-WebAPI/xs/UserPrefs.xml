@@ -1,13 +1,13 @@
 ﻿<Properties StartupConfiguration="{D47148DF-CDD9-4F93-BBEC-520BDA13F3EF}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Twitter-Showcase-WebAPI/Services/GetUserTimelineService.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Twitter-Showcase-WebAPI/appsettings.json">
     <Files>
-      <File FileName="Twitter-Showcase-WebAPI/Controllers/SearchController.cs" Line="42" Column="32" IsPinned="True" />
+      <File FileName="Twitter-Showcase-WebAPI/Controllers/SearchController.cs" Line="34" Column="1" IsPinned="True" />
       <File FileName="Twitter-Showcase-WebAPI/Models/UserTimeline.cs" Line="19" Column="27" IsPinned="True" />
       <File FileName="Twitter-Showcase-WebAPI/Startup.cs" Line="25" Column="30" IsPinned="True" />
-      <File FileName="Twitter-Showcase-WebAPI/Credentials.cs" Line="6" Column="47" />
-      <File FileName="Twitter-Showcase-WebAPI/Services/TwitterAuthorizationService.cs" Line="31" Column="1" />
-      <File FileName="Twitter-Showcase-WebAPI/Services/GetUserTimelineService.cs" Line="1" Column="1" NotebookId="1" />
-      <File FileName="Twitter-Showcase-WebAPI/Services/GetContentTweetsService.cs" Line="18" Column="56" NotebookId="1" />
+      <File FileName="Twitter-Showcase-WebAPI/Services/TwitterAuthorizationService.cs" Line="33" Column="1" />
+      <File FileName="Twitter-Showcase-WebAPI/appsettings.json" Line="1" Column="1" />
+      <File FileName="Twitter-Showcase-WebAPI/Services/GetUserTimelineService.cs" Line="19" Column="29" NotebookId="1" />
+      <File FileName="Twitter-Showcase-WebAPI/Services/GetContentTweetsService.cs" Line="17" Column="69" NotebookId="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -16,9 +16,8 @@
             <Node name="Twitter-Showcase-WebAPI" expanded="True">
               <Node name="Controllers" expanded="True" />
               <Node name="Models" expanded="True" />
-              <Node name="Services" expanded="True">
-                <Node name="GetUserTimelineService.cs" selected="True" />
-              </Node>
+              <Node name="Services" expanded="True" />
+              <Node name="appsettings.json" selected="True" />
             </Node>
           </Node>
         </State>
