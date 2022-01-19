@@ -11,11 +11,10 @@ namespace Twitter_Showcase_WebAPI.Services
         {
             var client = new RestClient("https://api.twitter.com/2");
 
-            var request = new RestRequest($"tweets/search/recent/?user.fields=profile_image_url&media.fields=preview_image_url,url,media_key&tweet.fields=created_at,public_metrics,attachments&expansions=author_id,attachments.media_keys&query={searchTerm}");
+            var request = new RestRequest($"tweets/search/recent/?user.fields=profile_image_url&media.fields=preview_image_url,url,media_key&tweet.fields=created_at,public_metrics,attachments&expansions=author_id,attachments.media_keys&query={searchTerm}&max_results=20");
 
             request.AddHeader("Authorization", $"Bearer {bearerToken}");
-            //request.AddHeader("Content-Type", "application/json");
-            //request.AddHeader("Accept", "application/json");
+            request.AddHeader("Content-Type", "application/json");
 
             var recentTweets = await client.GetAsync<UserTimeline>(request);
 

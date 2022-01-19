@@ -30,11 +30,7 @@ namespace Twitter_Showcase_WebAPI.Controllers
         [HttpGet]
         public async Task<string> GetUserTweets([FromQuery] string searchTerm)
         {
-            string apiKey = _configuration["Twitter:ApiKey"];
-            string secretKey = _configuration["Twitter:SecretKey"];
-
-
-            string authToken = await _twitterAuthorizationService.GetBearerToken(apiKey, secretKey);
+            string authToken = await _twitterAuthorizationService.GetBearerToken(_configuration["Twitter:ApiKey"], _configuration["Twitter:SecretKey"]);
             string id = await _getUserDetailsService.GetUserId(searchTerm, authToken);
 
             var userTimeline = await _getUserTimelineService.GetUserTimeline(id, authToken);
