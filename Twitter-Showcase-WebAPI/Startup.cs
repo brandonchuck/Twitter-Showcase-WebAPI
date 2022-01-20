@@ -17,15 +17,14 @@ namespace Twitter_Showcase_WebAPI
 
         public IConfiguration Configuration { get; }
 
-
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddScoped<ITwitterAuthorizationService, TwitterAuthorizationService>(); // why do i need this line and how would I know to add this???
-            services.AddScoped<IGetUserDetailsService, GetUserDetailsService>();
-            services.AddScoped<IGetUserTimelineService, GetUserTimelineService>();
-            services.AddScoped<IGetContentTweetsService, GetContentTweetsService>();
+            services.AddScoped<ITwitterAuthorizationService, TwitterAuthorizationService>();
+            services.AddScoped<IUserDetailsService, UserDetailsService>();
+            services.AddScoped<IUserTimelineService, UserTimelineService>();
+            services.AddScoped<IContentSearchService, ContentSearchService>();
             services.AddControllers();
         }
 

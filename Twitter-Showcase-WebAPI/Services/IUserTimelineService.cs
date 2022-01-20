@@ -3,7 +3,7 @@ using Twitter_Showcase_WebAPI.Models;
 
 namespace Twitter_Showcase_WebAPI.Services
 {
-    public interface IGetUserTimelineService
+    public interface IUserTimelineService
     {
         public Task<UserTimeline> GetUserTimeline(string userId, string bearerToken);
     }

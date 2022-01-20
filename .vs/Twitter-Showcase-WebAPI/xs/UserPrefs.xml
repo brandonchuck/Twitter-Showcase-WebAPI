@@ -1,11 +1,11 @@
 ﻿<Properties StartupConfiguration="{D47148DF-CDD9-4F93-BBEC-520BDA13F3EF}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Twitter-Showcase-WebAPI/Controllers/SearchController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Twitter-Showcase-WebAPI/Controllers/SearchByContentController.cs">
     <Files>
-      <File FileName="Twitter-Showcase-WebAPI/Controllers/SearchController.cs" Line="28" Column="10" IsPinned="True" />
-      <File FileName="Twitter-Showcase-WebAPI/appsettings.json" Line="2" Column="11" />
-      <File FileName="Twitter-Showcase-WebAPI/Services/GetUserTimelineService.cs" Line="13" Column="241" NotebookId="1" />
-      <File FileName="Twitter-Showcase-WebAPI/Services/GetContentTweetsService.cs" Line="14" Column="262" NotebookId="1" />
-      <File FileName="Twitter-Showcase-WebAPI/Services/GetUserDetailsService.cs" Line="1" Column="1" NotebookId="1" />
+      <File FileName="Twitter-Showcase-WebAPI/Controllers/SearchByContentController.cs" Line="12" Column="20" />
+      <File FileName="Twitter-Showcase-WebAPI/Services/ContentSearchService.cs" Line="9" Column="35" />
+      <File FileName="Twitter-Showcase-WebAPI/Controllers/SearchByUsernameController.cs" Line="36" Column="1" />
+      <File FileName="Twitter-Showcase-WebAPI/Services/UserTimelineService.cs" Line="10" Column="10" />
+      <File FileName="Twitter-Showcase-WebAPI/Services/TwitterAuthorizationService.cs" Line="6" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -13,16 +13,13 @@
           <Node name="Twitter-Showcase-WebAPI" expanded="True">
             <Node name="Twitter-Showcase-WebAPI" expanded="True">
               <Node name="Controllers" expanded="True">
-                <Node name="SearchController.cs" selected="True" />
+                <Node name="SearchByContentController.cs" selected="True" />
               </Node>
               <Node name="Models" expanded="True" />
               <Node name="Services" expanded="True" />
             </Node>
           </Node>
         </State>
-      </Pad>
-      <Pad Id="MonoDevelop.Debugger.WatchPad">
-        <State />
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>

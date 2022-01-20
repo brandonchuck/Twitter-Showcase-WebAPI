@@ -4,13 +4,11 @@ using Twitter_Showcase_WebAPI.Models;
 
 namespace Twitter_Showcase_WebAPI.Services
 {
-    public class GetUserDetailsService : IGetUserDetailsService
+    public class UserDetailsService : IUserDetailsService
     {
 
-        // uses username from url and bearerToken from api to get the UserDetails object
-        public async Task<string> GetUserId(string searchTerm, string bearerToken)
+        public async Task<UserDetails> GetUserId(string searchTerm, string bearerToken)
         {
-
             var client = new RestClient("https://api.twitter.com/2");
 
             var request = new RestRequest($"users/by/username/{searchTerm}");
@@ -19,7 +17,7 @@ namespace Twitter_Showcase_WebAPI.Services
 
             var response = await client.GetAsync<UserDetails>(request);
 
-            return response.data.id;
+            return response;
         }
     }
 }
