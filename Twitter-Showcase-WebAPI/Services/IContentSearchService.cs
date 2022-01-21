@@ -5,6 +5,6 @@ namespace Twitter_Showcase_WebAPI.Services
 {
     public interface IContentSearchService
     {
-        public Task<UserTimeline> GetTweetsByContent(string searchTerm, string bearerToken);
+        public Task<string> GetTweetsByContent(string searchTerm, string bearerToken);
     }
 }

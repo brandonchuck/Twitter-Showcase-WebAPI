@@ -34,6 +34,5 @@ namespace Twitter_Showcase_WebAPI.Controllers
 
             return JsonSerializer.Serialize(recentTweets);
         }
-
     }
 }

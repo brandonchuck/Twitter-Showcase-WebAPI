@@ -1,11 +1,16 @@
 ﻿<Properties StartupConfiguration="{D47148DF-CDD9-4F93-BBEC-520BDA13F3EF}|Default">
   <MonoDevelop.Ide.Workbench ActiveDocument="Twitter-Showcase-WebAPI/Controllers/SearchByContentController.cs">
     <Files>
-      <File FileName="Twitter-Showcase-WebAPI/Controllers/SearchByContentController.cs" Line="12" Column="20" />
-      <File FileName="Twitter-Showcase-WebAPI/Services/ContentSearchService.cs" Line="9" Column="35" />
-      <File FileName="Twitter-Showcase-WebAPI/Controllers/SearchByUsernameController.cs" Line="36" Column="1" />
-      <File FileName="Twitter-Showcase-WebAPI/Services/UserTimelineService.cs" Line="10" Column="10" />
+      <File FileName="Twitter-Showcase-WebAPI/Controllers/SearchByContentController.cs" Line="35" Column="1" />
+      <File FileName="Twitter-Showcase-WebAPI/Services/ContentSearchService.cs" Line="7" Column="51" />
+      <File FileName="Twitter-Showcase-WebAPI/Controllers/SearchByUsernameController.cs" Line="18" Column="33" />
+      <File FileName="Twitter-Showcase-WebAPI/Services/UserTimelineService.cs" Line="20" Column="29" />
       <File FileName="Twitter-Showcase-WebAPI/Services/TwitterAuthorizationService.cs" Line="6" Column="1" />
+      <File FileName="Twitter-Showcase-WebAPI/Services/IContentSearchService.cs" Line="8" Column="27" />
+      <File FileName="Twitter-Showcase-WebAPI/Models/UserTimeline.cs" Line="41" Column="24" NotebookId="1" />
+      <File FileName="Twitter-Showcase-WebAPI/Startup.cs" Line="49" Column="79" NotebookId="1" />
+      <File FileName="Twitter-Showcase-WebAPI/Program.cs" Line="1" Column="1" NotebookId="1" />
+      <File FileName="Twitter-Showcase-WebAPI/appsettings.json" Line="14" Column="44" NotebookId="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">

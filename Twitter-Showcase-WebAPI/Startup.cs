@@ -21,6 +21,7 @@ namespace Twitter_Showcase_WebAPI
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
             services.AddScoped<ITwitterAuthorizationService, TwitterAuthorizationService>();
             services.AddScoped<IUserDetailsService, UserDetailsService>();
             services.AddScoped<IUserTimelineService, UserTimelineService>();
@@ -28,6 +29,7 @@ namespace Twitter_Showcase_WebAPI
             services.AddControllers();
         }
 
+        // configure middleware
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
@@ -41,6 +43,11 @@ namespace Twitter_Showcase_WebAPI
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.UseCors(e =>
+            {
+                e.WithOrigins(Configuration["frontend_url"]).AllowAnyHeader().AllowAnyMethod();
+            });
 
             app.UseEndpoints(endpoints =>
             {
