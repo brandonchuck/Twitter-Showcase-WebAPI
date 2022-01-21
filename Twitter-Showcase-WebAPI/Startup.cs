@@ -38,16 +38,18 @@ namespace Twitter_Showcase_WebAPI
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseCors(e =>
+            {
+                e.WithOrigins("https://localhost:3000").AllowAnyHeader().AllowAnyMethod();
+            });
+
             app.UseHttpsRedirection();
 
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
 
-            app.UseCors(e =>
-            {
-                e.WithOrigins(Configuration["frontend_url"]).AllowAnyHeader().AllowAnyMethod();
-            });
+
 
             app.UseEndpoints(endpoints =>
             {
