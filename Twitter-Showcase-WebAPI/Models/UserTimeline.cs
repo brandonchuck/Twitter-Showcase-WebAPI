@@ -4,7 +4,7 @@ namespace Twitter_Showcase_WebAPI.Models
 {
     public class UserTimeline
     {
-        public IEnumerable<TweetData> data { get; set; }
+        public TweetData[] data { get; set; }
         public Includes includes { get; set; }
         public Metadata meta { get; set; }
     }

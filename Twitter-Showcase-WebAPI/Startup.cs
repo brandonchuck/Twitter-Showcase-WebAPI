@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Twitter_Showcase_WebAPI.Services;
+using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 
 namespace Twitter_Showcase_WebAPI
 {
@@ -18,15 +19,21 @@ namespace Twitter_Showcase_WebAPI
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddCors();
             services.AddScoped<ITwitterAuthorizationService, TwitterAuthorizationService>();
             services.AddScoped<IUserDetailsService, UserDetailsService>();
             services.AddScoped<IUserTimelineService, UserTimelineService>();
             services.AddScoped<IContentSearchService, ContentSearchService>();
+
+
             services.AddControllers();
+
+            // serving react project from the generated build folder for production
+            services.AddSpaStaticFiles(configuration =>
+            {
+                configuration.RootPath = "frontend/build";
+            });
         }
 
         // configure middleware
@@ -38,18 +45,28 @@ namespace Twitter_Showcase_WebAPI
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseCors(e =>
-            {
-                e.WithOrigins("https://localhost:3000").AllowAnyHeader().AllowAnyMethod();
-            });
-
             app.UseHttpsRedirection();
+
+            app.UseStaticFiles();
+            app.UseSpaStaticFiles();
 
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
 
+            // enabling React to be served
+            app.UseSpa(spa =>
+            {
+                spa.Options.SourcePath = "frontend";
 
+                // Change env to "Production" once ready and then we can run react project from ConfigureServices method!
+                // currently set to "Development" so this will run
+                // Check status in launchSettings.json
+                if (env.IsDevelopment())
+                {
+                    spa.UseReactDevelopmentServer(npmScript: "start");
+                }
+            });
 
             app.UseEndpoints(endpoints =>
             {
@@ -59,6 +76,8 @@ namespace Twitter_Showcase_WebAPI
                     await context.Response.WriteAsync("Hello World!");
                 });
             });
+
+
         }
     }
 }

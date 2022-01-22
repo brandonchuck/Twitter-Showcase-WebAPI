@@ -31,7 +31,7 @@ const Search = () => {
     <div>
       <h1>Search Tweets</h1>
       <form>
-        <div className="form-row justify-content">
+        <div className="form-row">
           <div className="col-auto">
             <input
               className="form-control"
@@ -44,6 +44,7 @@ const Search = () => {
               className="btn btn-primary form-control"
               type="submit"
               onClick={(e) => getTweets(e)}
+              disabled={!searchTerm}
             >
               Search
             </button>
@@ -66,7 +67,9 @@ const Search = () => {
           </div>
         </div>
       </form>
-      <TweetsList tweetsList={tweetsList} />
+      <div>
+        <TweetsList tweetsList={tweetsList} />
+      </div>
     </div>
   );
 };

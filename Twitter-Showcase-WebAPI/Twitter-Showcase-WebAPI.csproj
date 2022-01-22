@@ -12,6 +12,8 @@
     <None Remove="Services\" />
     <None Remove="Microsoft.AspNet.WebApi.Cors" />
     <None Remove="Microsoft.AspNetCore.Cors" />
+    <None Remove="Microsoft.AspNetCore.SpaServices" />
+    <None Remove="Microsoft.AspNetCore.SpaServices.Extensions" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
@@ -19,8 +21,8 @@
     <Folder Include="Services\" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNet.WebApi.Cors" Version="5.2.7" />
     <PackageReference Include="RestSharp" Version="107.1.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Cors" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.SpaServices" Version="3.1.22" />
+    <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="5.0.13" />
   </ItemGroup>
 </Project>
