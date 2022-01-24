@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Twitter_Showcase_WebAPI.Services;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
+using System.IO;
 
 namespace Twitter_Showcase_WebAPI
 {
@@ -54,20 +55,6 @@ namespace Twitter_Showcase_WebAPI
             app.UseAuthentication();
             app.UseAuthorization();
 
-            // enabling React to be served
-            app.UseSpa(spa =>
-            {
-                spa.Options.SourcePath = "frontend";
-
-                // Change env to "Production" once ready and then we can run react project from ConfigureServices method!
-                // currently set to "Development" so this will run
-                // Check status in launchSettings.json
-                if (env.IsDevelopment())
-                {
-                    spa.UseReactDevelopmentServer(npmScript: "start");
-                }
-            });
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
@@ -75,6 +62,19 @@ namespace Twitter_Showcase_WebAPI
                 {
                     await context.Response.WriteAsync("Hello World!");
                 });
+            });
+
+            // enabling React to be served
+            app.UseSpa(spa =>
+            {
+                spa.Options.SourcePath = "frontend";
+                // Change env to "Production" once ready and then we can run react project from ConfigureServices method!
+                // currently set to "Development" so this will run
+                // Check status in launchSettings.json
+                if (env.IsDevelopment())
+                {
+                    spa.UseReactDevelopmentServer(npmScript: "start");
+                }
             });
 
 
