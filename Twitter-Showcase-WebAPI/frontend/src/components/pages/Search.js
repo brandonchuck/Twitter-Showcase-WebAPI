@@ -4,12 +4,12 @@ import axios from "axios";
 
 const Search = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [tweetsList, setTweetsList] = useState("");
+  const [tweetResponse, setTweetResponse] = useState();
   const [searchChoice, setSearchChoice] = useState("Username");
 
   useEffect(() => {
-    console.log(tweetsList);
-  }, [tweetsList]);
+    console.log(tweetResponse);
+  }, [tweetResponse]);
 
   async function getTweets(e) {
     e.preventDefault();
@@ -24,7 +24,8 @@ const Search = () => {
         `api/tweets/search/content?searchTerm=${searchTerm}`
       );
     }
-    setTweetsList(res.data);
+    // console.log(typeof res.data.includes);
+    setTweetResponse(res.data); // passing the axios "data"
   }
 
   return (
@@ -68,7 +69,7 @@ const Search = () => {
         </div>
       </form>
       <div>
-        <TweetsList tweetsList={tweetsList} />
+        <TweetsList tweetResponse={tweetResponse} />
       </div>
     </div>
   );
