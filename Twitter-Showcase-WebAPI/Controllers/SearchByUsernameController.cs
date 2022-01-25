@@ -11,14 +11,14 @@ namespace Twitter_Showcase_WebAPI.Controllers
 {
     [Route("api/tweets/search/username")]
     [ApiController]
-    public class SearchController : ControllerBase
+    public class SearchByUsernameController : ControllerBase
     {
         private readonly ITwitterAuthorizationService _twitterAuthorizationService;
         private readonly IUserDetailsService _userDetailsService;
         private readonly IUserTimelineService _userTimelineService;
         private IConfiguration _configuration;
 
-        public SearchController(ITwitterAuthorizationService twitterAuthorizationService, IUserDetailsService userDetailsService, IUserTimelineService userTimelineService, IConfiguration configuration)
+        public SearchByUsernameController(ITwitterAuthorizationService twitterAuthorizationService, IUserDetailsService userDetailsService, IUserTimelineService userTimelineService, IConfiguration configuration)
         {
             _twitterAuthorizationService = twitterAuthorizationService; 
             _userDetailsService = userDetailsService;
