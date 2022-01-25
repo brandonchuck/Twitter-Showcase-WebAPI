@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using RestSharp;
@@ -16,16 +17,16 @@ namespace Twitter_Showcase_WebAPI.Services
             var options = new RestClientOptions("https://api.twitter.com/oauth2")
             {
                 ThrowOnAnyError = true,
-                Timeout = 1000
+                Timeout = 1000,
             };
 
             var client = new RestClient(options)
             {
-                Authenticator = new HttpBasicAuthenticator(apiKey, secretKey)
+                Authenticator = new HttpBasicAuthenticator(apiKey, secretKey, Encoding.UTF8)
             };
 
             // post to the "token" resource
-            var request = new RestRequest("token");
+            var request = new RestRequest("token", Method.Post);
 
             // add authorization parameters
             request.AddParameter("grant_type", "client_credentials");
@@ -33,6 +34,7 @@ namespace Twitter_Showcase_WebAPI.Services
             request.AddHeader("Accept", "application/json");
 
             var response = await client.PostAsync<AuthResult>(request);
+
             Console.WriteLine(response);
             return response.access_token;
         }

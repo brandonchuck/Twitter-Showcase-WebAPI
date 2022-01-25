@@ -55,7 +55,6 @@ namespace Twitter_Showcase_WebAPI
 
             //app.UseHttpsRedirection();
 
-            //app.UseStaticFiles();
             app.UseSpaStaticFiles();
 
             app.UseRouting();

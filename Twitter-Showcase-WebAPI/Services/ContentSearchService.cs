@@ -7,7 +7,7 @@ namespace Twitter_Showcase_WebAPI.Services
 {
     public class ContentSearchService : IContentSearchService
     {
-        public async Task<string> GetTweetsByContent(string searchTerm, string bearerToken)
+        public async Task<UserTimeline> GetTweetsByContent(string searchTerm, string bearerToken)
         {
             var client = new RestClient("https://api.twitter.com/2");
 
@@ -15,9 +15,9 @@ namespace Twitter_Showcase_WebAPI.Services
 
             request.AddHeader("Authorization", $"Bearer {bearerToken}");
 
-            var timeline = await client.GetAsync<UserTimeline>(request);
+            var recentTweets = await client.GetAsync<UserTimeline>(request);
 
-            return JsonSerializer.Serialize(timeline);
+            return recentTweets;
 
         }
     }

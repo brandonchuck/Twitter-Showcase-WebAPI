@@ -35,5 +35,5 @@ namespace Twitter_Showcase_WebAPI.Controllers
             var userTimeline = await _userTimelineService.GetUserTimeline(userDetails.data.id, authToken);
             return JsonSerializer.Serialize(userTimeline);
         }
-    }    
+    }
 }
