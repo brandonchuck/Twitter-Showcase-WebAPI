@@ -30,31 +30,33 @@ namespace Twitter_Showcase_WebAPI
             services.AddControllers();
 
             // serving react project from the generated build folder for production
-            //services.AddSpaStaticFiles(configuration =>
-            //{
-            //    configuration.RootPath = "frontend/build";
-            //});
+            services.AddSpaStaticFiles(configuration =>
+            {
+                configuration.RootPath = "frontend/build";
+            });
         }
 
         // configure middleware
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            app.UseCors(options => 
-                options.WithOrigins("https://localhost:3000") // accept requests from frontend
-                .AllowAnyMethod()
-                .AllowAnyHeader()
-            );
+
+            //app.UseCors(options =>
+            //    options.WithOrigins() // accept requests from frontend
+            //    .AllowAnyMethod()
+            //    .AllowAnyHeader()
+            //    //.AllowCredentials()
+            //);
 
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
 
             //app.UseStaticFiles();
-            //app.UseSpaStaticFiles();
+            app.UseSpaStaticFiles();
 
             app.UseRouting();
 
@@ -63,24 +65,20 @@ namespace Twitter_Showcase_WebAPI
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync("Hello World!");
-                });
             });
 
             // enabling React to be served
-            //app.UseSpa(spa =>
-            //{
-            //    spa.Options.SourcePath = "frontend";
-            //    // Change env to "Production" once ready and then we can run react project from ConfigureServices method!
-            //    // currently set to "Development" so this will run
-            //    // Check status in launchSettings.json
-            //    if (env.IsDevelopment())
-            //    {
-            //        spa.UseReactDevelopmentServer(npmScript: "start");
-            //    }
-            //});
+            app.UseSpa(spa =>
+            {
+                spa.Options.SourcePath = "frontend";
+                // Change env to "Production" once ready and then we can run react project from ConfigureServices method!
+                // currently set to "Development" so this will run
+                // Check status in launchSettings.json
+                if (env.IsDevelopment())
+                {
+                    spa.UseReactDevelopmentServer(npmScript: "start");
+                }
+            });
 
 
         }

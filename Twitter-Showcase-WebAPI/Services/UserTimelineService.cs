@@ -15,31 +15,9 @@ namespace Twitter_Showcase_WebAPI.Services
 
             request.AddHeader("Authorization", $"Bearer {bearerToken}");
 
-            var timeline =  await client.GetAsync<UserTimeline>(request);
+            var timeline = await client.GetAsync<UserTimeline>(request);
 
             return timeline;
-            //List<TweetData> tweetData = new List<TweetData>();
-            //List<UserData> userDatas = new List<UserData>();
-            //List<MediaData> mediaDatas = new List<MediaData>();
-
-            //foreach(TweetData t in timeline.data)
-            //{
-            //    tweetData.Add(t);
-            //}
-
-            //foreach(UserData d in timeline.includes.users)
-            //{
-            //    userDatas.Add(d);
-            //}
-
-            //foreach(MediaData m in timeline.includes.media)
-            //{
-            //    mediaDatas.Add(m);
-            //}
-
-
-
-
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using RestSharp;
 using RestSharp.Authenticators;
@@ -32,7 +33,7 @@ namespace Twitter_Showcase_WebAPI.Services
             request.AddHeader("Accept", "application/json");
 
             var response = await client.PostAsync<AuthResult>(request);
-
+            Console.WriteLine(response);
             return response.access_token;
         }
     }
