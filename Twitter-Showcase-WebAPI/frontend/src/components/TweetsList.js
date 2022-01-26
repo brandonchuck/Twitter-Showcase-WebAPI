@@ -4,11 +4,11 @@ import React from "react";
 const TweetsList = ({ tweetResponse }) => {
   return (
     <>
-      <div>{tweetResponse && console.log(tweetResponse)}</div>;
+      <div>{tweetResponse && console.log(tweetResponse)}</div>
       <div>
         {tweetResponse &&
           tweetResponse.data.map((tweet) => {
-            return <div key={tweet.id}>{tweet.id}</div>;
+            return <div key={tweet.id}>{tweet.text}</div>;
           })}
 
         {tweetResponse &&

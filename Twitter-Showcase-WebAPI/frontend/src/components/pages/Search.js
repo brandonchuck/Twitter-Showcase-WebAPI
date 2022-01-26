@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import TweetsList from "../TweetsList";
 import axios from "axios";
+import { TweetObject } from "../../TweetObject";
 
 const Search = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -20,8 +21,8 @@ const Search = () => {
         `api/tweets/search/content?searchTerm=${searchTerm}`
       );
     }
-    // const tweets = createTweetList(res.data);
     setTweetResponse(res.data);
+    createTweetList(res.data);
   }
 
   function createTweetList(data) {
@@ -30,6 +31,7 @@ const Search = () => {
     let retweetCount;
     let replyCount;
     let likeCount;
+    let mediaKeys;
 
     let profileImageUrl;
     let username;
@@ -43,19 +45,49 @@ const Search = () => {
     let dataArray = data.data;
     let includes = data.includes;
 
-    for (let i = 0; i < dataArray; i++) {
+    for (let i = 0; i < dataArray.length; i++) {
       text = dataArray[i].text;
-      createdAt = dataArray[i].createdAt;
+      createdAt = dataArray[i].created_at;
       retweetCount = dataArray[i].public_metrics.retweet_count;
       replyCount = dataArray[i].public_metrics.reply_count;
       likeCount = dataArray[i].public_metrics.like_count;
-      // mediaKeys = dataArray[i].attachments.media_keys; // an array
 
-      username = includes.users[i].username;
-      screenName = includes.users[i].name;
-      profileImageUrl = includes.users[i].profile_image_url;
+      if (dataArray[i].attachments !== null) {
+        mediaKeys = dataArray[i].attachments.media_keys;
+      }
 
-      videoPreviewImageUrl = includes.media[i];
+      let currentUserInfo = includes.users.find((user) => {
+        return user.id === dataArray[i].author_id;
+      });
+      username = currentUserInfo.username;
+      profileImageUrl = currentUserInfo.profile_image_url;
+      screenName = currentUserInfo.name;
+
+      // let tweet = new TweetObject(
+      //   text,
+      //   username,
+      //   screenName,
+      //   createdAt,
+      //   retweetCount,
+      //   replyCount,
+      //   likeCount,
+      //   profileImageUrl,
+      //   videoPreviewImageUrl,
+      //   imageUrl
+      // );
+
+      // add tweet to tweetlist
+      // tweetList.push(tweet);
+
+      console.log(mediaKeys);
+      console.log(retweetCount);
+      console.log(likeCount);
+      console.log(replyCount);
+      console.log(text);
+      console.log(createdAt);
+      console.log(screenName);
+      console.log(username);
+      console.log(profileImageUrl);
     }
   }
 
