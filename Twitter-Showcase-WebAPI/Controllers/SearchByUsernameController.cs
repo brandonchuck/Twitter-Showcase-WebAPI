@@ -37,12 +37,9 @@ namespace Twitter_Showcase_WebAPI.Controllers
 
             List<TweetObject> tweetList = new List<TweetObject>();
 
-            var dataArray = userTimeline.data;
-            var includes = userTimeline.includes;
-
             List<TweetObject> tweets = userTimeline.data.Select<TweetData>(x =>
             {
-                TweetObject tweet = new TweetObject()
+                TweetObject tweet = new TweetObject
                 {
                     Text = x.text,
                     CreatedAt = x.created_at,
@@ -92,10 +89,10 @@ namespace Twitter_Showcase_WebAPI.Controllers
                     tweet.ImageUrl = null;
                     tweet.VideoPreviewImageUrl = null;
                 }
+
             });
 
             return tweetList;
-
             //return JsonSerializer.Serialize(userTimeline);
         }
 
