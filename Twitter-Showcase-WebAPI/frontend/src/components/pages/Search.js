@@ -1,11 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import TweetsList from "../TweetsList";
 import axios from "axios";
-import { TweetObject } from "../../TweetObject";
 
 const Search = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [tweetResponse, setTweetResponse] = useState("");
+  const [tweetResponse, setTweetResponse] = useState();
   const [searchChoice, setSearchChoice] = useState("Username");
 
   async function getTweets(e) {

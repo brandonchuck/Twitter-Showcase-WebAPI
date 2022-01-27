@@ -1,4 +1,6 @@
-﻿namespace Twitter_Showcase_WebAPI.Models
+﻿using System.Collections.Generic;
+
+namespace Twitter_Showcase_WebAPI.Models
 {
     public class TweetObject
     {
@@ -9,8 +11,8 @@
 
         public string Text { get; set; }
 
-        public string VideoPreviewImageUrl { get; set; }
-        public string ImageUrl { get; set; }
+        public List<string> VideoPreviewImageUrls { get; set; }
+        public List<string> ImageUrls { get; set; }
 
         public int LikeCount { get; set; }
         public int CommentCount { get; set; }
