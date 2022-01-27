@@ -35,8 +35,6 @@ namespace Twitter_Showcase_WebAPI.Controllers
             UserDetails userDetails = await _userDetailsService.GetUserId(searchTerm, authToken);
             var userTimeline = await _userTimelineService.GetUserTimeline(userDetails.data.id, authToken);
 
-            List<TweetObject> tweetList = new List<TweetObject>();
-
             List<TweetObject> tweets = userTimeline.data.Select<TweetData>(x =>
             {
                 TweetObject tweet = new TweetObject
@@ -92,7 +90,7 @@ namespace Twitter_Showcase_WebAPI.Controllers
 
             });
 
-            return tweetList;
+            return tweets;
             //return JsonSerializer.Serialize(userTimeline);
         }
 
