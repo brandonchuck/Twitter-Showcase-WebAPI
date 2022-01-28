@@ -20,17 +20,16 @@ namespace Twitter_Showcase_WebAPI.Services
 
                 this.SetVideoAndImageUrls(timeline, x, images, videos);
 
-                TweetObject tweet = new TweetObject(x.text, x.created_at, x.public_metrics.like_count, x.public_metrics.reply_count, x.public_metrics.retweet_count, currentUser.profile_image_url, currentUser.username, currentUser.name, images, videos);
+                TweetObject tweet = new TweetObject(x.text, x.created_at, x.public_metrics.like_count, x.public_metrics.reply_count, x.public_metrics.retweet_count, currentUser.profile_image_url, currentUser.name, currentUser.username, images, videos);
                 return tweet;
             }).ToList();
+
+            return tweets;
         }
 
         public UserData GetCurrentUser(UserTimeline timeline, TweetData currentTweet)
         {
-            UserData currentUser = timeline.includes.users.First(user =>
-                user.id == currentTweet.id
-            );
-
+            UserData currentUser = timeline.includes.users.First(user => user.id == currentTweet.author_id);
             return currentUser;
         }
 
