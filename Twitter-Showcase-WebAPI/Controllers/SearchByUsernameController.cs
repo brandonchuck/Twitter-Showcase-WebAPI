@@ -17,16 +17,19 @@ namespace Twitter_Showcase_WebAPI.Controllers
         private readonly ITwitterAuthorizationService _twitterAuthorizationService;
         private readonly IUserDetailsService _userDetailsService;
         private readonly IUserTimelineService _userTimelineService;
+        private readonly IFormatTweetService _formatTweetService;
         private IConfiguration _configuration;
 
-        public SearchByUsernameController(ITwitterAuthorizationService twitterAuthorizationService, IUserDetailsService userDetailsService, IUserTimelineService userTimelineService, IConfiguration configuration)
+        public SearchByUsernameController(ITwitterAuthorizationService twitterAuthorizationService, IUserDetailsService userDetailsService, IUserTimelineService userTimelineService, IConfiguration configuration, IFormatTweetService formatTweetService)
         {
             _twitterAuthorizationService = twitterAuthorizationService;
             _userDetailsService = userDetailsService;
             _userTimelineService = userTimelineService;
             _configuration = configuration;
+            _formatTweetService = formatTweetService;
         }
 
+        // Task<List<TweetObject>>
         [HttpGet]
         public async Task<string> GetUserTimeline([FromQuery] string searchTerm)
         {
@@ -34,7 +37,8 @@ namespace Twitter_Showcase_WebAPI.Controllers
             UserDetails userDetails = await _userDetailsService.GetUserId(searchTerm, authToken);
             var userTimeline = await _userTimelineService.GetUserTimeline(userDetails.data.id, authToken);
 
-
+            //var tweets = _formatTweetService.GetTweets();
+            // Should this be a service method in itself and just return the formatted list of TweetObjects?
             List<TweetObject> tweets = userTimeline.data.Select(x =>
             {
                 TweetObject tweet = new TweetObject
