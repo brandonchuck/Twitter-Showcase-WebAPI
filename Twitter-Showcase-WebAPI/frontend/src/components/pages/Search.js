@@ -25,7 +25,7 @@ const Search = () => {
 
   return (
     <div>
-      <h1>Search Tweets</h1>
+      <h1 className="title">Search Tweets</h1>
       <form>
         <div className="form-row">
           <div className="col-auto">

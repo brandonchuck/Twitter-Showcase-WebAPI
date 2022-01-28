@@ -29,58 +29,39 @@ namespace Twitter_Showcase_WebAPI.Controllers
             _formatTweetService = formatTweetService;
         }
 
-        // Task<List<TweetObject>>
         [HttpGet]
-        public async Task<string> GetUserTimeline([FromQuery] string searchTerm)
+        public async Task<List<TweetObject>> GetUserTimeline([FromQuery] string searchTerm)
         {
             string authToken = await _twitterAuthorizationService.GetBearerToken(_configuration["Twitter:ApiKey"], _configuration["Twitter:SecretKey"]);
             UserDetails userDetails = await _userDetailsService.GetUserId(searchTerm, authToken);
             var userTimeline = await _userTimelineService.GetUserTimeline(userDetails.data.id, authToken);
 
+            List<TweetObject> myList = new List<TweetObject>();
+            
             //var tweets = _formatTweetService.GetTweets();
-            // Should this be a service method in itself and just return the formatted list of TweetObjects?
             List<TweetObject> tweets = userTimeline.data.Select(x =>
             {
-                TweetObject tweet = new TweetObject
-                {
-                    Text = x.text,
-                    CreatedAt = x.created_at,
-                    LikeCount = x.public_metrics.like_count,
-                    RetweetCount = x.public_metrics.retweet_count,
-                    CommentCount = x.public_metrics.reply_count,
-                };
+                UserData currentUser = userTimeline.includes.users.First(user => user.id == x.author_id);
 
-                // find username and name
-                UserData currentUser = userTimeline.includes.users.First(user =>
-                {
-                    return user.id == x.id;
-                });
+                List<string> images = new List<string>();
+                List<string> videos = new List<string>();
 
-                // set ScreenName and Username for tweet object
-                tweet.ScreenName = currentUser.name;
-                tweet.Username = currentUser.username;
-                tweet.ProfileImageUrl = currentUser.profile_image_url;
-
-                // check if there are any media_keys
                 if (x.attachments != null)
                 {
-                    // loop through each media_key in attachments.media_keys
                     foreach (string key in x.attachments.media_keys)
                     {
-                        // loop through each media_key in includes.media
                         foreach (MediaData m in userTimeline.includes.media)
                         {
-                            // check if these keys match for the current tweet object
                             if (m.media_key == key)
                             {
                                 if (m.type == "photo")
                                 {
-                                tweet.ImageUrls.Add(m.url);
+                                    images.Add(m.url);
                                 }
 
                                 if (m.type == "video")
                                 {
-                                tweet.VideoPreviewImageUrls.Add(m.preview_image_url);
+                                    videos.Add(m.preview_image_url);
                                 }
                             }
                         }
@@ -88,15 +69,63 @@ namespace Twitter_Showcase_WebAPI.Controllers
                 }
                 else
                 {
-                    tweet.ImageUrls.Add(string.Empty);
-                    tweet.VideoPreviewImageUrls.Add(string.Empty);
+                    images.Add(string.Empty);
+                    videos.Add(string.Empty);
                 }
 
-            });
-            
-            //return tweets;
-            return JsonSerializer.Serialize(userTimeline);
+                TweetObject tweet = new TweetObject(x.text, x.created_at, x.public_metrics.like_count, x.public_metrics.reply_count, x.public_metrics.retweet_count, currentUser.profile_image_url, currentUser.name, currentUser.username, images, videos);
+                return tweet;
+            }).ToList();
+
+            //return JsonSerializer.Serialize(tweets);
+            return tweets;
         }
 
     }
+
+
+
+//    TweetObject tweet = new TweetObject
+//    {
+//        Text = x.text,
+//        CreatedAt = x.created_at,
+//        LikeCount = x.public_metrics.like_count,
+//        RetweetCount = x.public_metrics.retweet_count,
+//        CommentCount = x.public_metrics.reply_count,
+//    };
+
+//    UserData currentUser = userTimeline.includes.users.First(user =>
+//        user.id == x.id
+//    );
+
+//    tweet.ScreenName = currentUser.name;
+//                tweet.Username = currentUser.username;
+//                tweet.ProfileImageUrl = currentUser.profile_image_url;
+
+//                if (x.attachments != null)
+//                {
+//                    foreach (string key in x.attachments.media_keys)
+//                    {
+//                        foreach (MediaData m in userTimeline.includes.media)
+//                        {
+//                            if (m.media_key == key)
+//                            {
+//                                if (m.type == "photo")
+//                                {
+//                                    tweet.ImageUrls.Add(m.url);
+//                                }
+
+//if (m.type == "video")
+//{
+//    tweet.VideoPreviewImageUrls.Add(m.preview_image_url);
+//}
+//                            }
+//                        }
+//                    }
+//                }
+//                else
+//{
+//    tweet.ImageUrls.Add(string.Empty);
+//    tweet.VideoPreviewImageUrls.Add(string.Empty);
 }
+

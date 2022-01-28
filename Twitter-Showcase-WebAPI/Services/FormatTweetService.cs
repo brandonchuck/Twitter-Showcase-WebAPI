@@ -10,43 +10,32 @@ namespace Twitter_Showcase_WebAPI.Services
 
         public List<TweetObject> GetTweets(UserTimeline timeline)
         {
-            var tweets = timeline.data.Select(x => {
-
-                TweetObject tweet = new TweetObject
-                {
-                    Text = x.text,
-                    CreatedAt = x.created_at,
-                    LikeCount = x.public_metrics.like_count,
-                    RetweetCount = x.public_metrics.retweet_count,
-                    CommentCount = x.public_metrics.reply_count,
-                };
-
+            List<TweetObject> tweets = timeline.data.Select(x =>
+            {
                 UserData currentUser = this.GetCurrentUser(timeline, x);
 
-                // set ScreenName and Username for tweet object
-                tweet.ScreenName = currentUser.name;
-                tweet.Username = currentUser.username;
-                tweet.ProfileImageUrl = currentUser.profile_image_url;
+                // extract each of these into separate functions? one for setting images, other for videos?
+                List<string> images = new List<string>();
+                List<string> videos = new List<string>();
 
-                // set vidoePreviewImageUrls and ImageUrls
-                this.SetVideoAndImageUrls(timeline, x, tweet);
-            });
+                this.SetVideoAndImageUrls(timeline, x, images, videos);
 
-            return tweets;
+                TweetObject tweet = new TweetObject(x.text, x.created_at, x.public_metrics.like_count, x.public_metrics.reply_count, x.public_metrics.retweet_count, currentUser.profile_image_url, currentUser.username, currentUser.name, images, videos);
+                return tweet;
+            }).ToList();
         }
 
         public UserData GetCurrentUser(UserTimeline timeline, TweetData currentTweet)
         {
             UserData currentUser = timeline.includes.users.First(user =>
-            {
-                return user.id == currentTweet.id;
-            });
+                user.id == currentTweet.id
+            );
 
             return currentUser;
         }
 
 
-        public void SetVideoAndImageUrls(UserTimeline timeline, TweetData data, TweetObject tweet)
+        public void SetVideoAndImageUrls(UserTimeline timeline, TweetData data, List<string> images, List<string> videos)
         {
             if (data.attachments != null)
             {
@@ -61,12 +50,12 @@ namespace Twitter_Showcase_WebAPI.Services
                         {
                             if (m.type == "photo")
                             {
-                                tweet.ImageUrls.Add(m.url);
+                                images.Add(m.url);
                             }
 
                             if (m.type == "video")
                             {
-                                tweet.VideoPreviewImageUrls.Add(m.preview_image_url);
+                                videos.Add(m.preview_image_url);
                             }
                         }
                     }
@@ -74,8 +63,8 @@ namespace Twitter_Showcase_WebAPI.Services
             }
             else
             {
-                tweet.ImageUrls.Add(string.Empty);
-                tweet.VideoPreviewImageUrls.Add(string.Empty);
+                images.Add(string.Empty);
+                videos.Add(string.Empty);
             }
         }
     }
