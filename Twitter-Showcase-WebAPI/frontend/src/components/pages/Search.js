@@ -4,7 +4,7 @@ import axios from "axios";
 
 const Search = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [tweetResponse, setTweetResponse] = useState();
+  const [tweetResponse, setTweetResponse] = useState([]);
   const [searchChoice, setSearchChoice] = useState("Username");
 
   async function getTweets(e) {
@@ -63,9 +63,7 @@ const Search = () => {
           </div>
         </div>
       </form>
-      <div>
-        <TweetsList tweetResponse={tweetResponse} />
-      </div>
+      <TweetsList tweetResponse={tweetResponse} />
     </div>
   );
 };

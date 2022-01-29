@@ -1,3 +1,8 @@
+body {
+  background-color: #282c34;
+  color: whitesmoke;
+}
+
 .App {
   text-align: center;
 }
@@ -35,4 +40,30 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.metrics-container {
+  padding-top: 10px;
+}
+
+.public-metrics {
+  border: solid;
+  border-color: black;
+  border-radius: 5px;
+}
+
+.metric {
+  display: inline;
+  border: solid;
+  border-color: black;
+  border-radius: 5px;
+}
+
+.tweet-card-container {
+  padding: 15px;
+  color: black;
+}
+
+.card {
+  border-radius: 15px;
 }

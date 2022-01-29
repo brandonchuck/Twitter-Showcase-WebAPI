@@ -13,13 +13,15 @@ namespace Twitter_Showcase_WebAPI.Controllers
     {
         private readonly ITwitterAuthorizationService _twitterAuthorizationService;
         private readonly IContentSearchService _contentSearchService;
+        private readonly IFormatTweetService _formatTweetService;
         private IConfiguration _configuration;
 
-        public SearchByContentController(ITwitterAuthorizationService twitterAuthorizationService, IContentSearchService contentSearchService, IConfiguration configuration)
+        public SearchByContentController(ITwitterAuthorizationService twitterAuthorizationService, IContentSearchService contentSearchService, IConfiguration configuration, IFormatTweetService formatTweetService)
         {
             _twitterAuthorizationService = twitterAuthorizationService;
             _contentSearchService = contentSearchService;
             _configuration = configuration;
+            _formatTweetService = formatTweetService;
         }
 
 
@@ -30,7 +32,9 @@ namespace Twitter_Showcase_WebAPI.Controllers
 
             var recentTweets = await _contentSearchService.GetTweetsByContent(searchTerm, authToken);
 
-            return JsonSerializer.Serialize(recentTweets);
+            var tweets = _formatTweetService.GetTweets(recentTweets);
+
+            return JsonSerializer.Serialize(tweets);
         }
     }
 }

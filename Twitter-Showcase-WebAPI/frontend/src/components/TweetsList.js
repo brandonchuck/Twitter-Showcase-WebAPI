@@ -1,14 +1,21 @@
 import React from "react";
+import { Container } from "react-bootstrap";
+import TweetCard from "./TweetCard";
 
 const TweetsList = ({ tweetResponse }) => {
   return (
-    <div>
-      {/* {tweetResponse &&
-        tweetResponse.data.map((tweet, index) => {
-          return <div key={index}>{tweet.text}</div>;
-        })} */}
+    <Container>
       {tweetResponse && console.log(tweetResponse)}
-    </div>
+
+      {tweetResponse &&
+        tweetResponse.map((tweet, index) => {
+          return (
+            <div className="tweet-card-container" key={index}>
+              <TweetCard tweet={tweet} />
+            </div>
+          );
+        })}
+    </Container>
   );
 };
 

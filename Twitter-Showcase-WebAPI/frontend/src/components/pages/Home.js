@@ -3,7 +3,7 @@ const Home = () => {
     <div>
       <h1>Welcome to Blue Bird!</h1>
       <p>
-        Click on the <strong>search</strong> page to find users by username and
+        Click on the <strong>search</strong> page to find tweets by username and
         content.
       </p>
       <p>

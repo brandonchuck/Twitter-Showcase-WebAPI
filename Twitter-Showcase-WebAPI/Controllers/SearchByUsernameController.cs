@@ -30,7 +30,7 @@ namespace Twitter_Showcase_WebAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<List<TweetObject>> GetUserTimeline([FromQuery] string searchTerm)
+        public async Task<string> GetUserTimeline([FromQuery] string searchTerm)
         {
             string authToken = await _twitterAuthorizationService.GetBearerToken(_configuration["Twitter:ApiKey"], _configuration["Twitter:SecretKey"]);
             UserDetails userDetails = await _userDetailsService.GetUserId(searchTerm, authToken);
@@ -38,7 +38,7 @@ namespace Twitter_Showcase_WebAPI.Controllers
 
             var tweets = _formatTweetService.GetTweets(userTimeline);
 
-            return tweets;
+            return JsonSerializer.Serialize(tweets);
         }
     }
 

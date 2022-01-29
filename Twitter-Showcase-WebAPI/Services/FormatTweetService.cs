@@ -62,8 +62,8 @@ namespace Twitter_Showcase_WebAPI.Services
             }
             else
             {
-                images.Add(string.Empty);
-                videos.Add(string.Empty);
+                images = null;
+                videos = null;
             }
         }
     }
