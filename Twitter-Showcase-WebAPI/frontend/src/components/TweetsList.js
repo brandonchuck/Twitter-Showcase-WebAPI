@@ -2,13 +2,13 @@ import React from "react";
 import { Container } from "react-bootstrap";
 import TweetCard from "./TweetCard";
 
-const TweetsList = ({ tweetResponse }) => {
+const TweetsList = ({ tweets }) => {
   return (
     <Container>
-      {tweetResponse && console.log(tweetResponse)}
+      {tweets && console.log(tweets)}
 
-      {tweetResponse &&
-        tweetResponse.map((tweet, index) => {
+      {tweets &&
+        tweets.map((tweet, index) => {
           return (
             <div className="tweet-card-container" key={index}>
               <TweetCard tweet={tweet} />

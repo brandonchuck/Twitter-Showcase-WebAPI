@@ -6,5 +6,6 @@ namespace Twitter_Showcase_WebAPI.Services
     public interface IFormatTweetService
     {
         public List<TweetObject> GetTweets(UserTimeline timeline);
+        public List<TweetObject> GetRandomTweets(UserTimeline timeline);
     }
 }

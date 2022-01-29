@@ -14,7 +14,7 @@ namespace Twitter_Showcase_WebAPI.Controllers
         private readonly ITwitterAuthorizationService _twitterAuthorizationService;
         private readonly IContentSearchService _contentSearchService;
         private readonly IFormatTweetService _formatTweetService;
-        private IConfiguration _configuration;
+        private readonly IConfiguration _configuration;
 
         public SearchByContentController(ITwitterAuthorizationService twitterAuthorizationService, IContentSearchService contentSearchService, IConfiguration configuration, IFormatTweetService formatTweetService)
         {

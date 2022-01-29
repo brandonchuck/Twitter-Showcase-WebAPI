@@ -66,5 +66,10 @@ namespace Twitter_Showcase_WebAPI.Services
                 videos = null;
             }
         }
+
+        public List<TweetObject> GetRandomTweets(UserTimeline timeline)
+        {
+
+        }
     }
 }

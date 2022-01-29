@@ -1,9 +1,73 @@
+import axios from "axios";
+import React, { useState } from "react";
+import TweetsList from "../TweetsList";
+import { Container, Row, Col, Card } from "react-bootstrap";
+
 const Random = () => {
+  const [randomTweets, setRandomTweets] = useState([]);
+
+  // NFT Accounts
+  // Make function for grabbing pfp also if you want to change?
+  const USER_1 = "garyvee";
+  const USER_2 = "shanicucic96";
+  const USER_3 = "DystoApez";
+  const USER_4 = "PGodjira";
+  const USER_5 = "AbsoluteSaltETH";
+
+  async function getRandomTweets(user) {
+    let res = axios.get(`api/tweet/random/user=${user}`);
+
+    setRandomTweets(res.data);
+  }
+
   return (
-    <div>
-      <h1>This is the Random page</h1>
-      <h2>This page contains random tweets from 5 preselected users</h2>
-    </div>
+    <Container>
+      <Row>
+        <Col>
+          <input
+            className="user"
+            type="image"
+            alt="user1"
+            src="https://pbs.twimg.com/profile_images/1268176490979561472/aorwOh3s_normal.jpg"
+            value={`${USER_1}`}
+            onClick={(e) => getRandomTweets(e.target.value)}
+          />
+          <input
+            className="user"
+            type="image"
+            alt="user2"
+            src="https://pbs.twimg.com/profile_images/1470891016790052865/9Bat2HMQ_normal.jpg"
+            value={`${USER_2}`}
+            onClick={(e) => getRandomTweets(e.target.value)}
+          />
+          <input
+            className="user"
+            type="image"
+            alt="user3"
+            src="https://pbs.twimg.com/profile_images/1484414951032868867/6pUgEraw_normal.jpg"
+            value={`${USER_3}`}
+            onClick={(e) => getRandomTweets(e.target.value)}
+          />
+          <input
+            className="user"
+            type="image"
+            alt="user4"
+            src="https://pbs.twimg.com/profile_images/1486998994371121153/7frJOAEP_normal.jpg"
+            value={`${USER_4}`}
+            onClick={(e) => getRandomTweets(e.target.value)}
+          />
+          <input
+            className="user"
+            type="image"
+            alt="user5"
+            src="https://pbs.twimg.com/profile_images/1486137594467471364/3IAXbv9Z_normal.jpg"
+            value={`${USER_5}`}
+            onClick={(e) => getRandomTweets(e.target.value)}
+          />
+        </Col>
+      </Row>
+      <TweetsList randomTweets={randomTweets} />
+    </Container>
   );
 };
 
