@@ -16,7 +16,9 @@ const Random = () => {
 
   async function getRandomTweets(e) {
     e.preventDefault();
-    let res = await axios.get(`api/tweets/random?user=${e.target.value}`);
+    let res = await axios.get(
+      `api/tweets/search/random?user=${e.target.value}`
+    );
     setRandomTweets(res.data);
   }
 
