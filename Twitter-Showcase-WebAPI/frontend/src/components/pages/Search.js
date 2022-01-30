@@ -1,6 +1,7 @@
 import { useState } from "react";
 import TweetsList from "../TweetsList";
 import axios from "axios";
+import { Container } from "react-bootstrap";
 
 const Search = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -24,7 +25,7 @@ const Search = () => {
   }
 
   return (
-    <div>
+    <Container>
       <h1 className="title">Search Tweets</h1>
       <form>
         <div className="form-row">
@@ -64,7 +65,7 @@ const Search = () => {
         </div>
       </form>
       <TweetsList tweets={tweets} />
-    </div>
+    </Container>
   );
 };
 

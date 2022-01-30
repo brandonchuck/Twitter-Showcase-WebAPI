@@ -4,7 +4,7 @@ import TweetCard from "./TweetCard";
 
 const TweetsList = ({ tweets }) => {
   return (
-    <Container>
+    <Container className="tweet-feed">
       {tweets && console.log(tweets)}
 
       {tweets &&

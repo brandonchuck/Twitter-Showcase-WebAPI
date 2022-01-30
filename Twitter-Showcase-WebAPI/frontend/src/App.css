@@ -4,7 +4,6 @@ body {
 }
 
 .App {
-  text-align: center;
 }
 
 .App-logo {
@@ -59,11 +58,71 @@ body {
   border-radius: 5px;
 }
 
-.tweet-card-container {
+.tweet-feed {
+  display: flex;
+  width: 65%;
+  flex-direction: column;
+  align-content: center;
+  border-radius: 15px;
   padding: 15px;
+  background-color: whitesmoke;
+}
+
+.tweet-card-container {
+  padding: 10px;
   color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .card {
   border-radius: 15px;
+  height: auto;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+}
+
+.tweet-content-container {
+  padding: 15px;
+}
+
+.pfp-column {
+  justify-content: center;
+  padding: 5px;
+}
+
+.profile-picture {
+  border-radius: 50%;
+}
+
+.media {
+  border-radius: 15px;
+  height: auto;
+}
+
+.user {
+  border-radius: 50%;
+}
+
+.random-user-container {
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.random-user-header {
+  padding: 15px;
+}
+
+.random-user-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.user-label {
+  color: whitesmoke;
+  background-color: #0d6efd;
+  border-radius: 10px;
+  padding: 5px;
 }

@@ -2,29 +2,32 @@ import { Card, Row, Col, Container } from "react-bootstrap";
 
 const TweetCard = ({ tweet }) => {
   return (
-    <Card>
-      <Container>
+    <Card className="tweet-card">
+      <Container className="tweet-content-container">
         <Row>
-          <Col xs={1}>
-            <Card.Body>
-              <img src={tweet.ProfileImageUrl} alt="pfp" />
+          <Col sm={1}>
+            <Card.Body className="d-flex justify-content-center">
+              <img
+                className="profile-picture"
+                src={tweet.ProfileImageUrl}
+                alt="pfp"
+              />
             </Card.Body>
           </Col>
-          <Col>
+          <Col sm={11}>
             <Card.Body>
-              <Card.Title className="d-flex justify-content-start">
+              <Card.Title className="d-flex text-left">
                 {tweet.ScreenName} @{tweet.Username}
+                {/* {tweet.CreatedAt} */}
               </Card.Title>
-              <Card.Text className="d-flex justify-content-start">
-                {tweet.Text}
-              </Card.Text>
+              <Card.Text className="d-flex text-left">{tweet.Text}</Card.Text>
               {tweet.ImageUrls &&
                 tweet.ImageUrls.map((img, index) => {
                   return (
                     <img
-                      className="image-url"
+                      className="media"
                       key={index}
-                      style={{ width: "50%", height: "50%" }}
+                      style={{ width: "100%", height: "auto" }}
                       src={img}
                       alt="pic"
                     />
@@ -34,8 +37,8 @@ const TweetCard = ({ tweet }) => {
                 tweet.VideoPreviewImageUrls.map((img) => {
                   return (
                     <img
-                      className="video-preview-url"
-                      style={{ width: "40%", height: "40%" }}
+                      className="media"
+                      style={{ width: "100%", height: "auto" }}
                       src={img}
                       alt="vid"
                     />

@@ -23,49 +23,77 @@ const Random = () => {
   }
 
   return (
-    <Container>
-      <Row>
+    <Container className="random-user-container">
+      <Row className="random-user-header">
         <Col>
           <input
             className="user"
+            id="user-1"
             type="image"
             alt="user1"
             src="https://pbs.twimg.com/profile_images/1268176490979561472/aorwOh3s_normal.jpg"
             value={`${USER_1}`}
             onClick={(e) => getRandomTweets(e)}
           />
+          <label className="user-label" htmlFor="user-1">
+            Gary V
+          </label>
+        </Col>
+        <Col>
           <input
             className="user"
+            id="user-2"
             type="image"
             alt="user2"
             src="https://pbs.twimg.com/profile_images/1470891016790052865/9Bat2HMQ_normal.jpg"
             value={`${USER_2}`}
             onClick={(e) => getRandomTweets(e)}
           />
+          <label className="user-label" htmlFor="user-2">
+            Shan
+          </label>
+        </Col>
+        <Col>
           <input
             className="user"
+            id="user-3"
             type="image"
             alt="user3"
             src="https://pbs.twimg.com/profile_images/1484414951032868867/6pUgEraw_normal.jpg"
             value={`${USER_3}`}
             onClick={(e) => getRandomTweets(e)}
           />
+          <label className="user-label" htmlFor="user-3">
+            Dysto Apez
+          </label>
+        </Col>
+        <Col>
           <input
             className="user"
+            id="user-4"
             type="image"
             alt="user4"
             src="https://pbs.twimg.com/profile_images/1486998994371121153/7frJOAEP_normal.jpg"
             value={`${USER_4}`}
             onClick={(e) => getRandomTweets(e)}
           />
+          <label className="user-label" htmlFor="user-4">
+            Project Godjira
+          </label>
+        </Col>
+        <Col>
           <input
             className="user"
+            id="user-5"
             type="image"
             alt="user5"
             src="https://pbs.twimg.com/profile_images/1486137594467471364/3IAXbv9Z_normal.jpg"
             value={`${USER_5}`}
             onClick={(e) => getRandomTweets(e)}
           />
+          <label className="user-label" htmlFor="user-5">
+            AbsoluteSaltETH
+          </label>
         </Col>
       </Row>
       <TweetsList tweets={randomTweets} />
