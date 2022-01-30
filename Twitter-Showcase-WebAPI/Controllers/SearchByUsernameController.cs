@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text.Json;
+﻿using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -25,15 +22,17 @@ namespace Twitter_Showcase_WebAPI.Controllers
             _twitterAuthorizationService = twitterAuthorizationService;
             _userDetailsService = userDetailsService;
             _userTimelineService = userTimelineService;
-            _configuration = configuration;
             _formatTweetService = formatTweetService;
+            _configuration = configuration;
         }
 
         [HttpGet]
         public async Task<string> GetUserTimeline([FromQuery] string searchTerm)
         {
             string authToken = await _twitterAuthorizationService.GetBearerToken(_configuration["Twitter:ApiKey"], _configuration["Twitter:SecretKey"]);
+            
             UserDetails userDetails = await _userDetailsService.GetUserId(searchTerm, authToken);
+            
             var userTimeline = await _userTimelineService.GetUserTimeline(userDetails.data.id, authToken);
 
             var tweets = _formatTweetService.GetTweets(userTimeline);

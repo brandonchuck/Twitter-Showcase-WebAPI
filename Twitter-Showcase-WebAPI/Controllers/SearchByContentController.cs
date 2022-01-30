@@ -29,9 +29,9 @@ namespace Twitter_Showcase_WebAPI.Controllers
         public async Task<string> GetRecentTweets([FromQuery] string searchTerm)
         {
             string authToken = await _twitterAuthorizationService.GetBearerToken(_configuration["Twitter:ApiKey"], _configuration["Twitter:SecretKey"]);
-
+            
             var recentTweets = await _contentSearchService.GetTweetsByContent(searchTerm, authToken);
-
+            
             var tweets = _formatTweetService.GetTweets(recentTweets);
 
             return JsonSerializer.Serialize(tweets);

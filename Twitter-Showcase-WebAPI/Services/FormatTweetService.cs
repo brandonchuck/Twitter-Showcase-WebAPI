@@ -69,6 +69,21 @@ namespace Twitter_Showcase_WebAPI.Services
 
         public List<TweetObject> GetRandomTweets(UserTimeline timeline)
         {
+            List<TweetObject> randomTweets = new List<TweetObject>();
+
+            List<TweetObject> tweets = this.GetTweets(timeline);
+
+            while (randomTweets.Count != 10)
+            {
+                Random rand = new Random();
+                int randomInt = rand.Next(0, tweets.Count);
+
+                if (!randomTweets.Contains(tweets[randomInt])){
+                    randomTweets.Add(tweets[randomInt]);
+                }
+            }
+
+            return randomTweets;
 
         }
     }
