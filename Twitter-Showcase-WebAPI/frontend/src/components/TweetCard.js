@@ -7,7 +7,7 @@ const TweetCard = ({ tweet }) => {
   return (
     <Card className="tweet-card">
       <Container className="tweet-content-container">
-        <Row>
+        <Row className="g-0">
           <Col sm={1}>
             <Card.Body className="d-flex justify-content-center">
               <img
@@ -54,8 +54,8 @@ const TweetCard = ({ tweet }) => {
                     />
                   );
                 })}
-              <div className="d-flex justify-content-start metrics-container">
-                <ul className="d-flex justify-content-start public-metrics">
+              <div className="d-flex metrics-container">
+                <ul className="d-flex public-metrics">
                   <li className="metric">
                     <FontAwesomeIcon
                       className="twitter-icon"
