@@ -54,7 +54,7 @@ const TweetCard = ({ tweet }) => {
                     />
                   );
                 })}
-              <div className="d-flex metrics-container">
+              <div className="metrics-container">
                 <ul className="d-flex public-metrics">
                   <li className="metric">
                     <FontAwesomeIcon

@@ -1,6 +1,10 @@
 body {
   background-color: #282c34;
   color: whitesmoke;
+  background-image: url("../public/alexander-shatov-k1xf2D7jWUs-unsplash.jpg");
+  background-size: 50%;
+  background-position: bottom bottom;
+  background-repeat: no-repeat;
 }
 
 .App {
