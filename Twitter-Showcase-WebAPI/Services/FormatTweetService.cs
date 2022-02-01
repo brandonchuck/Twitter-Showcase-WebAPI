@@ -20,7 +20,7 @@ namespace Twitter_Showcase_WebAPI.Services
 
                 this.SetVideoAndImageUrls(timeline, x, images, videos);
 
-                TweetObject tweet = new TweetObject(x.text, x.created_at, x.public_metrics.like_count, x.public_metrics.reply_count, x.public_metrics.retweet_count, currentUser.profile_image_url, currentUser.name, currentUser.username, images, videos);
+                TweetObject tweet = new TweetObject(x.text, FormatDate(x.created_at), x.public_metrics.like_count, x.public_metrics.reply_count, x.public_metrics.retweet_count, currentUser.profile_image_url, currentUser.name, currentUser.username, images, videos);
                 return tweet;
             }).ToList();
 
@@ -78,13 +78,20 @@ namespace Twitter_Showcase_WebAPI.Services
                 Random rand = new Random();
                 int randomInt = rand.Next(0, tweets.Count);
 
-                if (!randomTweets.Contains(tweets[randomInt])){
+                if (!randomTweets.Contains(tweets[randomInt]))
+                {
                     randomTweets.Add(tweets[randomInt]);
                 }
             }
 
             return randomTweets;
 
+        }
+
+        // formats DateTime object and converts to a string
+        public string FormatDate(DateTime createdAt)
+        {
+            return createdAt.ToString("g");
         }
     }
 }

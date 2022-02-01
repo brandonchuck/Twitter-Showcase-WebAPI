@@ -23,8 +23,6 @@ const TweetCard = ({ tweet }) => {
                 <Col>
                   <div className="d-flex text-left screen-name">
                     <strong>{tweet.ScreenName}</strong>
-
-                    {/* {tweet.CreatedAt} */}
                   </div>
                   <p className="username">
                     @{tweet.Username} - {tweet.CreatedAt}
@@ -76,7 +74,6 @@ const TweetCard = ({ tweet }) => {
 
                   <li className="metric">
                     <FontAwesomeIcon className="twitter-icon" icon={faHeart} />
-                    {/* <i class="far fa-heart"></i> */}
                     {tweet.LikeCount}
                   </li>
                 </ul>
