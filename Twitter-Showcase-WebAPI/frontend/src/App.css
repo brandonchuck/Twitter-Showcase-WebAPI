@@ -1,10 +1,12 @@
 body {
-  background-color: #282c34;
+  background-color: #001829;
   color: whitesmoke;
-  background-image: url("../public/alexander-shatov-k1xf2D7jWUs-unsplash.jpg");
-  background-size: 50%;
-  background-position: bottom bottom;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)),
+    url("../public/alexander-shatov-k1xf2D7jWUs-unsplash.jpg");
+  background-size: cover;
+  background-position: center 42%;
   background-repeat: no-repeat;
+  height: 100vh;
 }
 
 .App {
@@ -46,6 +48,11 @@ body {
   }
 }
 
+.navbar {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+}
+
 .navbar-brand {
   font-family: "Alex Brush", cursive;
   font-size: 40pt;
@@ -65,6 +72,7 @@ body {
 }
 
 .welcome-title {
+  margin-top: 200px;
   font-size: 50pt;
 }
 
@@ -81,7 +89,6 @@ body {
 }
 
 .search-container {
-  /* width: 65%; */
   display: flex;
   flex-direction: column;
   align-content: center;
@@ -91,8 +98,6 @@ body {
   width: 65%;
   display: inline-flex;
   flex-direction: column;
-
-  /* justify-content: space-evenly; */
 }
 
 .search-bar {
@@ -114,17 +119,16 @@ body {
 }
 
 .public-metrics {
-  border: solid;
-  border-color: black;
   border-radius: 5px;
   list-style: none;
   margin: 0px;
+  padding: 0px;
 }
 
 .metric {
   display: inline-block;
   border-radius: 5px;
-  margin: 10px;
+  margin-right: 10px;
 }
 
 .twitter-icon {
