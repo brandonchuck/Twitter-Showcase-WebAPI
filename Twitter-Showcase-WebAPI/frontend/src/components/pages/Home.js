@@ -1,15 +1,24 @@
+import { Container, Row, Col } from "react-bootstrap";
+
 const Home = () => {
   return (
-    <div>
-      <h1>Welcome to Blue Bird!</h1>
-      <p>
-        Click on the <strong>search</strong> page to find tweets by username and
-        content.
-      </p>
-      <p>
-        Click on the <strong>random</strong> page and find random tweets.
-      </p>
-    </div>
+    <Container className="welcome-container">
+      <Row>
+        <Col>
+          <h1 className="welcome-title">Welcome to Blue Bird!</h1>
+          <Container className="description-container">
+            <p className="description">
+              Click on the <strong>search</strong> page to search tweets by
+              username and content
+            </p>
+            <p className="description">
+              Click on the <strong>random</strong> page to find random tweets
+              from 5 popular accounts in the NFT twitterverse!
+            </p>
+          </Container>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 

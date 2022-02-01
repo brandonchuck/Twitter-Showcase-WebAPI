@@ -1,7 +1,7 @@
 import { useState } from "react";
 import TweetsList from "../TweetsList";
 import axios from "axios";
-import { Container } from "react-bootstrap";
+import { Container, Row, Col, Form } from "react-bootstrap";
 
 const Search = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -13,60 +13,75 @@ const Search = () => {
     let res;
 
     if (searchChoice === "Username") {
-      res = await axios.get(
-        `api/tweets/search/username?searchTerm=${searchTerm}`
-      );
+      try {
+        res = await axios.get(
+          `api/tweets/search/username?searchTerm=${searchTerm}`
+        );
+      } catch (err) {
+        console.log(err);
+      }
     } else {
-      res = await axios.get(
-        `api/tweets/search/content?searchTerm=${searchTerm}`
-      );
+      res = await axios
+        .get(`api/tweets/search/content?searchTerm=${searchTerm}`)
+        .catch((err) => {
+          console.log(err.response.data.message);
+        });
     }
     setTweets(res.data);
   }
 
   return (
-    <Container>
-      <h1 className="title">Search Tweets</h1>
-      <form>
-        <div className="form-row">
-          <div className="col-auto">
-            <input
-              className="form-control"
-              type="text"
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
-          </div>
-          <div className="col-auto">
-            <button
-              className="btn btn-primary form-control"
-              type="submit"
-              onClick={(e) => getTweets(e)}
-              disabled={!searchTerm}
-            >
-              Search
-            </button>
-          </div>
-          <div className="btn-group" role="group">
-            <button
-              type="button"
-              className="btn btn-secondary"
-              onClick={(e) => setSearchChoice(e.target.textContent)}
-            >
-              Username
-            </button>
-            <button
-              type="button"
-              className="btn btn-secondary"
-              onClick={(e) => setSearchChoice(e.target.textContent)}
-            >
-              Content
-            </button>
-          </div>
-        </div>
-      </form>
+    <Container className="search-container">
+      <h1 className="search-title">Search Tweets</h1>
+      <Container className="form-container">
+        <Form>
+          <Row>
+            <Col className="search-bar-col">
+              <input
+                className="form-control search-bar"
+                type="text"
+                onChange={(e) => setSearchTerm(e.target.value)}
+                placeholder="Search"
+              />
+              <button
+                className="btn btn-primary form-control search-btn"
+                type="submit"
+                onClick={(e) => getTweets(e)}
+                disabled={!searchTerm}
+              >
+                Search
+              </button>
+              <div className=" btn btn-group" role="group">
+                <button
+                  type="button"
+                  className="btn btn-secondary search-selector"
+                  onClick={(e) => {
+                    setSearchChoice(e.target.textContent);
+                  }}
+                >
+                  Username
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-secondary search-selector"
+                  onClick={(e) => {
+                    setSearchChoice(e.target.textContent);
+                  }}
+                >
+                  Content
+                </button>
+              </div>
+            </Col>
+          </Row>
+        </Form>
+      </Container>
       <TweetsList tweets={tweets} />
     </Container>
   );
 };
 
 export default Search;
+
+// {`${
+//   isActive ? "active" : ""
+// } btn btn-secondary search-selector`}

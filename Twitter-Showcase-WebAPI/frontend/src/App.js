@@ -11,17 +11,15 @@ function App() {
     <Router>
       <div className="App">
         <Header />
-        <div>
-          <Routes>
-            <Route exact path="/" element={<Home />} />
+        <Routes>
+          <Route exact path="/" element={<Home />} />
 
-            <Route exact path="/search" element={<Search />} />
+          <Route exact path="/search" element={<Search />} />
 
-            <Route exact path="/random" element={<Random />} />
+          <Route exact path="/random" element={<Random />} />
 
-            <Route path="*" element={<Error />} />
-          </Routes>
-        </div>
+          <Route path="*" element={<Error />} />
+        </Routes>
       </div>
     </Router>
   );

@@ -1,4 +1,7 @@
 import { Card, Row, Col, Container } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart, faComment } from "@fortawesome/free-regular-svg-icons";
+import { faRetweet } from "@fortawesome/free-solid-svg-icons";
 
 const TweetCard = ({ tweet }) => {
   return (
@@ -16,10 +19,19 @@ const TweetCard = ({ tweet }) => {
           </Col>
           <Col sm={11}>
             <Card.Body>
-              <Card.Title className="d-flex text-left">
-                {tweet.ScreenName} @{tweet.Username}
-                {/* {tweet.CreatedAt} */}
-              </Card.Title>
+              <Row className="tweet-info-row">
+                <Col>
+                  <div className="d-flex text-left screen-name">
+                    <strong>{tweet.ScreenName}</strong>
+
+                    {/* {tweet.CreatedAt} */}
+                  </div>
+                  <p className="username">
+                    @{tweet.Username} - {tweet.CreatedAt}
+                  </p>
+                </Col>
+              </Row>
+
               <Card.Text className="d-flex text-left">{tweet.Text}</Card.Text>
               {tweet.ImageUrls &&
                 tweet.ImageUrls.map((img, index) => {
@@ -45,10 +57,28 @@ const TweetCard = ({ tweet }) => {
                   );
                 })}
               <div className="d-flex justify-content-start metrics-container">
-                <ul className="public-metrics">
-                  <li className="metric">{tweet.CommentCount}</li>
-                  <li className="metric">{tweet.RetweetCount}</li>
-                  <li className="metric">{tweet.LikeCount}</li>
+                <ul className="d-flex justify-content-start public-metrics">
+                  <li className="metric">
+                    <FontAwesomeIcon
+                      className="twitter-icon"
+                      icon={faComment}
+                    />
+                    {tweet.CommentCount}
+                  </li>
+
+                  <li className="metric">
+                    <FontAwesomeIcon
+                      className="twitter-icon"
+                      icon={faRetweet}
+                    />
+                    {tweet.RetweetCount}
+                  </li>
+
+                  <li className="metric">
+                    <FontAwesomeIcon className="twitter-icon" icon={faHeart} />
+                    {/* <i class="far fa-heart"></i> */}
+                    {tweet.LikeCount}
+                  </li>
                 </ul>
               </div>
             </Card.Body>

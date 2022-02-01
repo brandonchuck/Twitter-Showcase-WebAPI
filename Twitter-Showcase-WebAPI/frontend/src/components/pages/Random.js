@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import TweetsList from "../TweetsList";
 import { Container, Row, Col } from "react-bootstrap";
 

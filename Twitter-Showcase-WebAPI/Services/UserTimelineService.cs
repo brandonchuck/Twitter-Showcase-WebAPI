@@ -9,7 +9,13 @@ namespace Twitter_Showcase_WebAPI.Services
     {
         public async Task<UserTimeline> GetUserTimeline(string userId, string bearerToken)
         {
-            var client = new RestClient("https://api.twitter.com/2");
+            var options = new RestClientOptions("https://api.twitter.com/2")
+            {
+                ThrowOnAnyError = true,
+                Timeout = 1000,
+            };
+
+            var client = new RestClient(options);
 
             var request = new RestRequest($"users/{userId}/tweets?tweet.fields=created_at,public_metrics,attachments&user.fields=profile_image_url&media.fields=preview_image_url,url&expansions=author_id,attachments.media_keys&max_results=25");
 

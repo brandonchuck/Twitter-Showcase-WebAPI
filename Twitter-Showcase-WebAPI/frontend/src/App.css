@@ -4,6 +4,7 @@ body {
 }
 
 .App {
+  font-family: "IBM Plex Mono", monospace;
 }
 
 .App-logo {
@@ -41,8 +42,71 @@ body {
   }
 }
 
+.navbar-brand {
+  font-family: "Alex Brush", cursive;
+  font-size: 40pt;
+  font-weight: 400;
+}
+
+.navbar-nav {
+  font-size: 20pt;
+  font-family: "IBM Plex Mono", monospace;
+}
+
+.welcome-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.welcome-title {
+  font-size: 50pt;
+}
+
+.description-container {
+  margin-top: 25px;
+  font-size: 15pt;
+}
+
+.search-title {
+  margin-top: 100px;
+  margin-bottom: 50px;
+  align-self: center;
+  font-size: 50pt;
+}
+
+.search-container {
+  /* width: 65%; */
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
+
+.form-container {
+  width: 65%;
+  display: inline-flex;
+  flex-direction: column;
+
+  /* justify-content: space-evenly; */
+}
+
+.search-bar {
+  border-radius: 15px;
+}
+
+.search-btn {
+  width: fit-content;
+  border-radius: 15px;
+}
+
+.search-selector {
+  border-radius: 15px;
+}
+
 .metrics-container {
   padding-top: 10px;
+  font-size: 15px;
 }
 
 .public-metrics {
@@ -53,9 +117,14 @@ body {
 
 .metric {
   display: inline;
-  border: solid;
-  border-color: black;
+  /* border: solid;
+  border-color: black; */
   border-radius: 5px;
+  margin: 10px;
+}
+
+.twitter-icon {
+  margin-right: 5px;
 }
 
 .tweet-feed {
@@ -65,6 +134,7 @@ body {
   align-content: center;
   border-radius: 15px;
   padding: 15px;
+  margin-top: 75px;
   background-color: whitesmoke;
 }
 
@@ -90,10 +160,15 @@ body {
 .pfp-column {
   justify-content: center;
   padding: 5px;
+  margin-left: 10px;
 }
 
 .profile-picture {
   border-radius: 50%;
+}
+
+.screen-name {
+  font-size: x-large;
 }
 
 .media {
@@ -106,6 +181,7 @@ body {
 }
 
 .random-user-container {
+  margin-top: 100px;
   padding: 20px;
   border-radius: 10px;
 }
@@ -124,5 +200,14 @@ body {
   color: whitesmoke;
   background-color: #0d6efd;
   border-radius: 10px;
-  padding: 5px;
+  padding: 6px;
+}
+
+.btn-secondary:active {
+  background-color: #0d6efd !important;
+}
+
+.tweet-info-container {
+  display: inline-flex;
+  flex-direction: row;
 }

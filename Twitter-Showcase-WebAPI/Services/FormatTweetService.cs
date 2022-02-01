@@ -73,7 +73,7 @@ namespace Twitter_Showcase_WebAPI.Services
 
             List<TweetObject> tweets = this.GetTweets(timeline);
 
-            while (randomTweets.Count != 10)
+            while (randomTweets.Count != 15)
             {
                 Random rand = new Random();
                 int randomInt = rand.Next(0, tweets.Count);

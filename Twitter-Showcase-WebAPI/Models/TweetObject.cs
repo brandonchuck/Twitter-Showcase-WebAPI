@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Twitter_Showcase_WebAPI.Models
 {
     public class TweetObject
     {
-        public TweetObject(string text, string createdAt, int likeCount, int commentCount, int retweetCount, string profileImageUrl, string screenName, string username, List<string> imageUrls, List<string> videoPreviewImageUrls)
+        public TweetObject(string text, DateTime createdAt, int likeCount, int commentCount, int retweetCount, string profileImageUrl, string screenName, string username, List<string> imageUrls, List<string> videoPreviewImageUrls)
         {
             Text = text;
             CreatedAt = createdAt;
@@ -19,7 +20,7 @@ namespace Twitter_Showcase_WebAPI.Models
         }
 
         public string Text { get; set; }
-        public string CreatedAt { get; set; } // can this be type DateTime?
+        public DateTime CreatedAt { get; set; } // can this be type DateTime?
         public int LikeCount { get; set; }
         public int CommentCount { get; set; }
         public int RetweetCount { get; set; }

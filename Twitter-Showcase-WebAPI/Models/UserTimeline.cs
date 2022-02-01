@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Twitter_Showcase_WebAPI.Models
 {
@@ -14,7 +15,7 @@ namespace Twitter_Showcase_WebAPI.Models
     {
         public string id { get; set; }
         public string text { get; set; }
-        public string created_at { get; set; }
+        public DateTime created_at { get; set; }
         public string author_id { get; set; }
         public Attachments? attachments { get; set; }
         public TweetPublicMetrics public_metrics { get; set; }

@@ -1,4 +1,5 @@
-﻿using System.Text.Json;
+﻿using System;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -32,7 +33,7 @@ namespace Twitter_Showcase_WebAPI.Controllers
             string authToken = await _twitterAuthorizationService.GetBearerToken(_configuration["Twitter:ApiKey"], _configuration["Twitter:SecretKey"]);
             
             UserDetails userDetails = await _userDetailsService.GetUserId(searchTerm, authToken);
-            
+
             var userTimeline = await _userTimelineService.GetUserTimeline(userDetails.data.id, authToken);
 
             var tweets = _formatTweetService.GetTweets(userTimeline);
