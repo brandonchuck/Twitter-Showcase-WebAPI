@@ -45,7 +45,12 @@ const Search = () => {
     ) {
       usernameBtn.classList.add("active");
       contentBtn.classList.remove("active");
-    } else {
+    }
+
+    if (
+      e.target.textContent === "Content" &&
+      !e.target.classList.contains("active")
+    ) {
       contentBtn.classList.add("active");
       usernameBtn.classList.remove("active");
     }
@@ -107,7 +112,3 @@ const Search = () => {
 };
 
 export default Search;
-
-// {`${
-//   isActive ? "active" : ""
-// } btn btn-secondary search-selector`}

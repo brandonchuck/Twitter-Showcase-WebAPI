@@ -6,8 +6,6 @@ import { Container, Row, Col } from "react-bootstrap";
 const Random = () => {
   const [randomTweets, setRandomTweets] = useState([]);
 
-  // NFT Accounts
-  // Make function for grabbing pfp also if you want to change?
   const USER_1 = "garyvee";
   const USER_2 = "shanicucic96";
   const USER_3 = "DystoApez";
