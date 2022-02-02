@@ -14,7 +14,6 @@ namespace Twitter_Showcase_WebAPI.Services
             {
                 UserData currentUser = this.GetCurrentUser(timeline, x);
 
-                // extract each of these into separate functions? one for setting images, other for videos?
                 List<string> images = new List<string>();
                 List<string> videos = new List<string>();
 
@@ -38,13 +37,10 @@ namespace Twitter_Showcase_WebAPI.Services
         {
             if (data.attachments != null)
             {
-                // loop through each media_key in attachments.media_keys
                 foreach (string key in data.attachments.media_keys)
                 {
-                    // loop through each media_key in includes.media
                     foreach (MediaData m in timeline.includes.media)
                     {
-                        // check if these keys match for the current tweet object
                         if (m.media_key == key)
                         {
                             if (m.type == "photo")
@@ -88,7 +84,6 @@ namespace Twitter_Showcase_WebAPI.Services
 
         }
 
-        // formats DateTime object and converts to a string
         public string FormatDate(DateTime createdAt)
         {
             return createdAt.ToString("g");

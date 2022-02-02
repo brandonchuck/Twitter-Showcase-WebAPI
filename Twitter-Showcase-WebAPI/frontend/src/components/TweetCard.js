@@ -17,7 +17,7 @@ const TweetCard = ({ tweet }) => {
               />
             </Card.Body>
           </Col>
-          <Col sm={11}>
+          <Col>
             <Card.Body>
               <Row className="tweet-info-row">
                 <Col>
@@ -32,11 +32,11 @@ const TweetCard = ({ tweet }) => {
 
               <Card.Text className="d-flex text-left">{tweet.Text}</Card.Text>
               {tweet.ImageUrls &&
-                tweet.ImageUrls.map((img, index) => {
+                tweet.ImageUrls.map((img, idx) => {
                   return (
                     <img
                       className="media"
-                      key={index}
+                      key={idx}
                       style={{ width: "100%", height: "auto" }}
                       src={img}
                       alt="pic"
@@ -44,10 +44,11 @@ const TweetCard = ({ tweet }) => {
                   );
                 })}
               {tweet.VideoPreviewImageUrls &&
-                tweet.VideoPreviewImageUrls.map((img) => {
+                tweet.VideoPreviewImageUrls.map((img, idx) => {
                   return (
                     <img
                       className="media"
+                      key={idx}
                       style={{ width: "100%", height: "auto" }}
                       src={img}
                       alt="vid"

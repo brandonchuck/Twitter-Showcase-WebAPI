@@ -8,8 +8,7 @@ const ErrorCard = ({ tweetResponse }) => {
         <Row>
           <Col>
             <Card.Body className="d-flex justify-content-center">
-              {/* <Card.Text>{tweetResponse.error.value}not found!</Card.Text> */}
-              <Card.Text> Error not found!</Card.Text>
+              <Card.Text> User not found! </Card.Text>
             </Card.Body>
           </Col>
         </Row>

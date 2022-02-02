@@ -18,14 +18,18 @@ const Search = () => {
           `api/tweets/search/username?searchTerm=${searchTerm}`
         );
       } catch (err) {
-        console.log(err);
+        JSON.stringify(err);
+        console.log(err); // err represnts the error returned by .net web API
       }
     } else {
-      res = await axios
-        .get(`api/tweets/search/content?searchTerm=${searchTerm}`)
-        .catch((err) => {
-          console.log(err.response.data.message);
-        });
+      try {
+        res = await axios.get(
+          `api/tweets/search/content?searchTerm=${searchTerm}`
+        );
+      } catch (err) {
+        JSON.stringify(err);
+        console.log(err);
+      }
     }
     setTweets(res.data);
   }

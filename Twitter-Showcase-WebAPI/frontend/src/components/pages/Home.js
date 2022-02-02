@@ -12,7 +12,7 @@ const Home = () => {
               username and content
             </p>
             <p className="description">
-              Click on the <strong>random</strong> page to find random tweets
+              Click on the <strong>random</strong> page to view random tweets
               from 5 popular accounts in the NFT twitterverse!
             </p>
           </Container>
