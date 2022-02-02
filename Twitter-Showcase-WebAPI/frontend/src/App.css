@@ -114,6 +114,15 @@ body {
 .search-selector {
   border-radius: 15px;
   padding: 6px 12px;
+  border-style: none;
+}
+
+button#username-btn.active {
+  background-color: #0d6efd;
+}
+
+button#content-btn.active {
+  background-color: #0d6efd;
 }
 
 .metrics-container {

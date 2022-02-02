@@ -11,9 +11,9 @@ namespace Twitter_Showcase_WebAPI.Services
 
         public async Task<UserDetails> GetUserId(string searchTerm, string bearerToken)
         {
+
             var options = new RestClientOptions("https://api.twitter.com/2")
             {
-                ThrowOnAnyError = true,
                 Timeout = 1000,
             };
 
@@ -23,15 +23,9 @@ namespace Twitter_Showcase_WebAPI.Services
 
             request.AddHeader("Authorization", $"Bearer {bearerToken}");
 
-            var response = await client.GetAsync<UserDetails>(request);
-
-            if (response.data == null)
-            {
-                throw new Exception("User not found.");
-            }
+            var response = await client.GetAsync<UserDetails>(request); // <---- GetAsync<T> will throw 400 BadRequest exception
 
             return response;
-            
         }
     }
 }

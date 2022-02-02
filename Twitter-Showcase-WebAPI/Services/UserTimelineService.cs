@@ -11,7 +11,6 @@ namespace Twitter_Showcase_WebAPI.Services
         {
             var options = new RestClientOptions("https://api.twitter.com/2")
             {
-                ThrowOnAnyError = true,
                 Timeout = 1000,
             };
 
