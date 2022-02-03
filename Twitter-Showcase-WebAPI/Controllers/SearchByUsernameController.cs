@@ -35,9 +35,9 @@ namespace Twitter_Showcase_WebAPI.Controllers
             // username must be 15 or less characters
             //if (searchTerm.Length > 15)
             //{
-                 // custom exception?
+            // custom exception?
             //}
-            
+
             UserDetails userDetails = await _userDetailsService.GetUserId(searchTerm, authToken);
 
             if (userDetails.data == null)
@@ -49,7 +49,7 @@ namespace Twitter_Showcase_WebAPI.Controllers
 
             var tweets = _formatTweetService.GetTweets(userTimeline);
 
-            return Ok(JsonSerializer.Serialize(tweets));
+            return Ok(JsonSerializer.Serialize(tweets));            
         }
     }
 }
