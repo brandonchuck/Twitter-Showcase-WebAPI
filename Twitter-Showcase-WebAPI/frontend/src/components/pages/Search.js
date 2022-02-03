@@ -23,7 +23,7 @@ const Search = () => {
         console.log(res);
       } catch (err) {
         JSON.stringify(err);
-        console.log(err); // err represnts the error returned by .net web API
+        console.log(err); // err represnts the error returned by .net web API?
       }
     } else {
       try {
