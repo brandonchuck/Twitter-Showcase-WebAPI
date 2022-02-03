@@ -77,7 +77,6 @@ const Search = () => {
               >
                 Search
               </button>
-
               <div className=" btn btn-group" role="group">
                 <button
                   type="button"
