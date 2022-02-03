@@ -31,8 +31,19 @@ namespace Twitter_Showcase_WebAPI.Controllers
         public async Task<IActionResult> GetUserTimeline([FromQuery] string searchTerm)
         {
             string authToken = await _twitterAuthorizationService.GetBearerToken(_configuration["Twitter:ApiKey"], _configuration["Twitter:SecretKey"]);
+
+            // username must be 15 or less characters
+            //if (searchTerm.Length > 15)
+            //{
+                 // custom exception?
+            //}
             
             UserDetails userDetails = await _userDetailsService.GetUserId(searchTerm, authToken);
+
+            if (userDetails.data == null)
+            {
+                return NotFound("User not found");
+            }
 
             var userTimeline = await _userTimelineService.GetUserTimeline(userDetails.data.id, authToken);
 

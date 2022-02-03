@@ -1,5 +1,6 @@
 import { useState } from "react";
 import TweetsList from "../TweetsList";
+import ErrorCard from "../ErrorCard";
 import axios from "axios";
 import { Container, Row, Col, Form } from "react-bootstrap";
 
@@ -7,35 +8,34 @@ const Search = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [tweets, setTweets] = useState([]);
   const [searchChoice, setSearchChoice] = useState("Username");
-
-  const usernameBtn = document.getElementById("username-btn");
-  const contentBtn = document.getElementById("content-btn");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [usernameBtnClass, setUsernameBtnClass] = useState("active");
+  const [contentBtnClass, setContentBtnClass] = useState("");
 
   async function getTweets(e) {
     e.preventDefault();
-    let res;
 
     if (searchChoice === "Username") {
-      try {
-        res = await axios.get(
-          `api/tweets/search/username?searchTerm=${searchTerm}`
-        );
-        console.log(res);
-      } catch (err) {
-        JSON.stringify(err);
-        console.log(err); // err represnts the error returned by .net web API
-      }
+      await axios
+        .get(`api/tweets/search/username?searchTerm=${searchTerm}`)
+        .then((res) => setTweets(res.data))
+        .catch((err) => {
+          if (err.response.status >= 400) {
+            console.log(err.response);
+            setErrorMessage(err.response.data);
+          }
+        });
     } else {
-      try {
-        res = await axios.get(
-          `api/tweets/search/content?searchTerm=${searchTerm}`
-        );
-      } catch (err) {
-        JSON.stringify(err);
-        console.log(err);
-      }
+      await axios
+        .get(`api/tweets/search/content?searchTerm=${searchTerm}`)
+        .then((res) => setTweets(res.data))
+        .catch((err) => {
+          if (err.response.status >= 400) {
+            console.log(err.response);
+            setErrorMessage(err.response.data);
+          }
+        });
     }
-    setTweets(res.data);
   }
 
   function toggleActiveStatus(e) {
@@ -43,16 +43,16 @@ const Search = () => {
       e.target.textContent === "Username" &&
       !e.target.classList.contains("active")
     ) {
-      usernameBtn.classList.add("active");
-      contentBtn.classList.remove("active");
+      setUsernameBtnClass("active");
+      setContentBtnClass("");
     }
 
     if (
       e.target.textContent === "Content" &&
       !e.target.classList.contains("active")
     ) {
-      contentBtn.classList.add("active");
-      usernameBtn.classList.remove("active");
+      setUsernameBtnClass("");
+      setContentBtnClass("active");
     }
   }
 
@@ -80,7 +80,7 @@ const Search = () => {
               <div className=" btn btn-group" role="group">
                 <button
                   type="button"
-                  className="btn btn-secondary search-selector active"
+                  className={`btn btn-secondary search-selector ${usernameBtnClass}`}
                   id="username-btn"
                   onClick={(e) => {
                     setSearchChoice(e.target.textContent);
@@ -91,7 +91,7 @@ const Search = () => {
                 </button>
                 <button
                   type="button"
-                  className="btn btn-secondary search-selector"
+                  className={`btn btn-secondary search-selector ${contentBtnClass}`}
                   id="content-btn"
                   onClick={(e) => {
                     setSearchChoice(e.target.textContent);
@@ -105,7 +105,11 @@ const Search = () => {
           </Row>
         </Form>
       </Container>
-      <TweetsList tweets={tweets} />
+      {errorMessage ? (
+        <ErrorCard errorMessage={errorMessage} />
+      ) : (
+        <TweetsList tweets={tweets} />
+      )}
     </Container>
   );
 };

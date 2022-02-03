@@ -168,6 +168,7 @@ button#content-btn.active {
 }
 
 .card {
+  color: black;
   border-radius: 15px;
   height: auto;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);

@@ -1,14 +1,19 @@
 import React from "react";
 import { Card, Container, Row, Col } from "react-bootstrap";
 
-const ErrorCard = ({ tweetResponse }) => {
+const ErrorCard = ({ errorMessage }) => {
+  // debugger;
+  if (errorMessage === "") {
+    return <></>;
+  }
+
   return (
     <Card className="tweet-card">
       <Container className="tweet-content-container">
         <Row>
           <Col>
             <Card.Body className="d-flex justify-content-center">
-              <Card.Text> User not found! </Card.Text>
+              <Card.Text> {errorMessage} </Card.Text>
             </Card.Body>
           </Col>
         </Row>
