@@ -7,14 +7,13 @@ using Twitter_Showcase_WebAPI.Models;
 namespace Twitter_Showcase_WebAPI.Services
 {
     public class UserDetailsService : IUserDetailsService
-    {
-
+    { 
         public async Task<UserDetails> GetUserId(string searchTerm, string bearerToken)
         {
 
             var options = new RestClientOptions("https://api.twitter.com/2")
             {
-                Timeout = 1000,
+                Timeout = 3000,
             };
 
             var client = new RestClient(options);
@@ -23,7 +22,7 @@ namespace Twitter_Showcase_WebAPI.Services
 
             request.AddHeader("Authorization", $"Bearer {bearerToken}");
 
-            var response = await client.GetAsync<UserDetails>(request); // <---- GetAsync<T> will throw 400 BadRequest exception
+            var response = await client.GetAsync<UserDetails>(request);
 
             return response;
         }

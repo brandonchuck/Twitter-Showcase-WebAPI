@@ -7,18 +7,21 @@ import { Container, Row, Col, Form } from "react-bootstrap";
 const Search = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [tweets, setTweets] = useState([]);
-  const [searchChoice, setSearchChoice] = useState("Username");
+  const [searchChoice, setSearchChoice] = useState("Handle");
   const [errorMessage, setErrorMessage] = useState("");
-  const [usernameBtnClass, setUsernameBtnClass] = useState("active");
+  const [userHandleBtnClass, setUserHandleBtnClass] = useState("active");
   const [contentBtnClass, setContentBtnClass] = useState("");
 
   async function getTweets(e) {
     e.preventDefault();
 
-    if (searchChoice === "Username") {
+    if (searchChoice === "Handle") {
       await axios
         .get(`api/tweets/search/username?searchTerm=${searchTerm}`)
-        .then((res) => setTweets(res.data))
+        .then((res) => {
+          setTweets(res.data);
+          setErrorMessage("");
+        })
         .catch((err) => {
           if (err.response.status >= 400) {
             console.log(err.response);
@@ -28,22 +31,27 @@ const Search = () => {
     } else {
       await axios
         .get(`api/tweets/search/content?searchTerm=${searchTerm}`)
-        .then((res) => setTweets(res.data))
+        .then((res) => {
+          setTweets(res.data);
+          setErrorMessage("");
+        })
         .catch((err) => {
+          console.log(err.response);
           if (err.response.status >= 400) {
             console.log(err.response);
             setErrorMessage(err.response.data);
           }
         });
     }
+    setSearchTerm("");
   }
 
   function toggleActiveStatus(e) {
     if (
-      e.target.textContent === "Username" &&
+      e.target.textContent === "Handle" &&
       !e.target.classList.contains("active")
     ) {
-      setUsernameBtnClass("active");
+      setUserHandleBtnClass("active");
       setContentBtnClass("");
     }
 
@@ -51,7 +59,7 @@ const Search = () => {
       e.target.textContent === "Content" &&
       !e.target.classList.contains("active")
     ) {
-      setUsernameBtnClass("");
+      setUserHandleBtnClass("");
       setContentBtnClass("active");
     }
   }
@@ -67,10 +75,12 @@ const Search = () => {
                 className="form-control search-bar"
                 type="text"
                 onChange={(e) => setSearchTerm(e.target.value)}
+                value={searchTerm}
                 placeholder="Search"
               />
               <button
-                className="btn btn-primary form-control search-btn"
+                className="btn btn-primary"
+                id="search-btn"
                 type="submit"
                 onClick={(e) => getTweets(e)}
                 disabled={!searchTerm}
@@ -80,14 +90,14 @@ const Search = () => {
               <div className=" btn btn-group" role="group">
                 <button
                   type="button"
-                  className={`btn btn-secondary search-selector ${usernameBtnClass}`}
+                  className={`btn btn-secondary search-selector ${userHandleBtnClass}`}
                   id="username-btn"
                   onClick={(e) => {
                     setSearchChoice(e.target.textContent);
                     toggleActiveStatus(e);
                   }}
                 >
-                  Username
+                  Handle
                 </button>
                 <button
                   type="button"

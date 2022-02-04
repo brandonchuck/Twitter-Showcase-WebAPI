@@ -26,15 +26,20 @@ namespace Twitter_Showcase_WebAPI.Controllers
 
 
         [HttpGet]
-        public async Task<string> GetRecentTweets([FromQuery] string searchTerm)
+        public async Task<ActionResult> GetRecentTweets([FromQuery] string searchTerm)
         {
             string authToken = await _twitterAuthorizationService.GetBearerToken(_configuration["Twitter:ApiKey"], _configuration["Twitter:SecretKey"]);
             
             var recentTweets = await _contentSearchService.GetTweetsByContent(searchTerm, authToken);
             
+            if (recentTweets.data == null)
+            {
+                return NotFound("Content not found");
+            }
+
             var tweets = _formatTweetService.GetTweets(recentTweets);
 
-            return JsonSerializer.Serialize(tweets);
+            return Ok(JsonSerializer.Serialize(tweets));
         }
     }
 }

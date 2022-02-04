@@ -3,6 +3,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using Twitter_Showcase_WebAPI.CustomActionResults;
 using Twitter_Showcase_WebAPI.Models;
 using Twitter_Showcase_WebAPI.Services;
 
@@ -28,15 +29,15 @@ namespace Twitter_Showcase_WebAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetUserTimeline([FromQuery] string searchTerm)
+        public async Task<ActionResult> GetUserTimeline([FromQuery] string searchTerm)
         {
+
             string authToken = await _twitterAuthorizationService.GetBearerToken(_configuration["Twitter:ApiKey"], _configuration["Twitter:SecretKey"]);
 
-            // username must be 15 or less characters
-            //if (searchTerm.Length > 15)
-            //{
-            // custom exception?
-            //}
+            if (searchTerm.Length >= 15)
+            {
+                return NotFound("Username must be 15 characters or less");
+            }
 
             UserDetails userDetails = await _userDetailsService.GetUserId(searchTerm, authToken);
 
@@ -47,9 +48,15 @@ namespace Twitter_Showcase_WebAPI.Controllers
 
             var userTimeline = await _userTimelineService.GetUserTimeline(userDetails.data.id, authToken);
 
+            if (userTimeline.data == null) 
+            {
+                return NotFound("User does not have any tweets");
+            }
+
             var tweets = _formatTweetService.GetTweets(userTimeline);
 
-            return Ok(JsonSerializer.Serialize(tweets));            
+            return Ok(JsonSerializer.Serialize(tweets));
+
         }
     }
 }

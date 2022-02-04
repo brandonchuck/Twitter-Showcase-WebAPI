@@ -37,24 +37,32 @@ namespace Twitter_Showcase_WebAPI.Services
         {
             if (data.attachments != null)
             {
-                foreach (string key in data.attachments.media_keys)
+                if (data.attachments.poll_ids != null)
                 {
-                    foreach (MediaData m in timeline.includes.media)
-                    {
-                        if (m.media_key == key)
-                        {
-                            if (m.type == "photo")
-                            {
-                                images.Add(m.url);
-                            }
+                    data.attachments.poll_ids = null;
+                }
 
-                            if (m.type == "video")
+                if (data.attachments.media_keys != null)
+                {
+                    foreach (string key in data.attachments.media_keys)
+                    {
+                        foreach (MediaData m in timeline.includes.media)
+                        {
+                            if (m.media_key == key)
                             {
-                                videos.Add(m.preview_image_url);
+                                if (m.type == "photo")
+                                {
+                                    images.Add(m.url);
+                                }
+
+                                if (m.type == "video")
+                                {
+                                    videos.Add(m.preview_image_url);
+                                }
                             }
                         }
                     }
-                }
+                } 
             }
             else
             {

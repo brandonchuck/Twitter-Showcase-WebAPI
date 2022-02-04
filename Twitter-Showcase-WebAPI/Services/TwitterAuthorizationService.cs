@@ -16,8 +16,7 @@ namespace Twitter_Showcase_WebAPI.Services
 
             var options = new RestClientOptions("https://api.twitter.com/oauth2")
             {
-                ThrowOnAnyError = true,
-                Timeout = 1000,
+                Timeout = 3000,
             };
 
             var client = new RestClient(options)
@@ -25,10 +24,8 @@ namespace Twitter_Showcase_WebAPI.Services
                 Authenticator = new HttpBasicAuthenticator(apiKey, secretKey, Encoding.UTF8)
             };
 
-            // post to the "token" resource
             var request = new RestRequest("token", Method.Post);
 
-            // add authorization parameters
             request.AddParameter("grant_type", "client_credentials");
             request.AddHeader("Content-Type", "application/x-www-form-urlencoded");
             request.AddHeader("Accept", "application/json");

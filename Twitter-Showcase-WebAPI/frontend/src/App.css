@@ -106,9 +106,10 @@ body {
   border-radius: 15px;
 }
 
-.search-btn {
+#search-btn {
   width: fit-content;
   border-radius: 15px;
+  padding: 0px;
 }
 
 .search-selector {
@@ -235,4 +236,8 @@ button#content-btn.active {
 .tweet-info-container {
   display: inline-flex;
   flex-direction: row;
+}
+
+.error-text {
+  font-size: 15pt;
 }
