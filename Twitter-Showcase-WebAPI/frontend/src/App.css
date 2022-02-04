@@ -1,16 +1,16 @@
 body {
   background-color: #001829;
   color: whitesmoke;
+}
+
+.App {
+  font-family: "IBM Plex Mono", monospace;
   background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)),
     url("../public/alexander-shatov-k1xf2D7jWUs-unsplash.jpg");
   background-size: cover;
   background-position: center 42%;
   background-repeat: no-repeat;
   height: 100vh;
-}
-
-.App {
-  font-family: "IBM Plex Mono", monospace;
 }
 
 .App-logo {
@@ -25,7 +25,7 @@ body {
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #001829;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -104,18 +104,31 @@ body {
 
 .search-bar {
   border-radius: 15px;
+  margin-right: 5px;
 }
 
-#search-btn {
+button#search-btn {
   width: fit-content;
   border-radius: 15px;
+  padding: 15px;
+  margin-right: 20px;
+}
+
+button.btn {
   padding: 0px;
 }
 
 .search-selector {
   border-radius: 15px;
-  padding: 6px 12px;
   border-style: none;
+}
+
+#username-btn {
+  padding: 5px;
+}
+
+#content-btn {
+  padding: 5px;
 }
 
 button#username-btn.active {

@@ -2,7 +2,6 @@ import React from "react";
 import { Card, Container, Row, Col } from "react-bootstrap";
 
 const ErrorCard = ({ errorMessage }) => {
-  // debugger;
   if (errorMessage === "") {
     return <></>;
   }

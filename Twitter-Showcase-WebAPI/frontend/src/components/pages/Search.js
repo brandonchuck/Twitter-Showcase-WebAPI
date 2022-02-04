@@ -24,7 +24,6 @@ const Search = () => {
         })
         .catch((err) => {
           if (err.response.status >= 400) {
-            console.log(err.response);
             setErrorMessage(err.response.data);
           }
         });
@@ -36,9 +35,7 @@ const Search = () => {
           setErrorMessage("");
         })
         .catch((err) => {
-          console.log(err.response);
           if (err.response.status >= 400) {
-            console.log(err.response);
             setErrorMessage(err.response.data);
           }
         });
@@ -79,7 +76,7 @@ const Search = () => {
                 placeholder="Search"
               />
               <button
-                className="btn btn-primary"
+                className="btn btn-primary form-control"
                 id="search-btn"
                 type="submit"
                 onClick={(e) => getTweets(e)}
@@ -87,7 +84,7 @@ const Search = () => {
               >
                 Search
               </button>
-              <div className=" btn btn-group" role="group">
+              <div className="btn-group">
                 <button
                   type="button"
                   className={`btn btn-secondary search-selector ${userHandleBtnClass}`}
