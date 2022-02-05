@@ -36,7 +36,7 @@ namespace Twitter_Showcase_WebAPI.Controllers
 
             if (searchTerm.Length >= 15)
             {
-                return NotFound("Username must be 15 characters or less");
+                return BadRequest("Username must be 15 characters or less");
             }
 
             UserDetails userDetails = await _userDetailsService.GetUserId(searchTerm, authToken);
