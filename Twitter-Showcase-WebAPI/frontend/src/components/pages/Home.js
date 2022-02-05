@@ -9,7 +9,7 @@ const Home = () => {
           <Container className="description-container">
             <p className="description">
               Click on the <strong>search</strong> page to search tweets by
-              username and content
+              twitter handle and content
             </p>
             <p className="description">
               Click on the <strong>random</strong> page to view random tweets

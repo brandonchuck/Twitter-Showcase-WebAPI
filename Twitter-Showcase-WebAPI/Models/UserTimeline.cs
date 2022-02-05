@@ -33,6 +33,8 @@ namespace Twitter_Showcase_WebAPI.Models
     public class Attachments
     {
         public string[] media_keys { get; set; }
+
+        public string[] poll_ids { get; set; }
     }
 
 
