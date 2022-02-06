@@ -43,7 +43,7 @@ namespace Twitter_Showcase_WebAPI
                 app.UseDeveloperExceptionPage();
             }
 
-            //app.UseHttpsRedirection();
+            app.UseHttpsRedirection();
 
             app.UseSpaStaticFiles();
 
