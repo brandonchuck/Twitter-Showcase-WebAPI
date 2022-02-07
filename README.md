@@ -12,7 +12,7 @@
 # Preview
 
 - Search Page (by twitter handle)
-![blue-bird-usename-search-preview-image.png](./Twitter-Showcase-WebAPI/frontend/public/blue-bird-usename-search-preview-image.png)
+![blue-bird-user-search-preview-image.png](./Twitter-Showcase-WebAPI/frontend/public/blue-bird-user-search-preview-image.png)
 
 - Search Page (by content)
 ![blue-bird-content-search-preview-image.png](./Twitter-Showcase-WebAPI/frontend/public/blue-bird-content-search-preview-image.png)
