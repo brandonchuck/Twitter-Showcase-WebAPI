@@ -5,6 +5,6 @@
   </PropertyGroup>
   <PropertyGroup>
     <ActiveDebugProfile>IIS Express</ActiveDebugProfile>
-    <NameOfLastUsedPublishProfile>C:\Users\Brandon\Desktop\Mentorship Program\Twitter-Showcase-WebAPI\.github\workflows\bluebirdtwitterapp.yml</NameOfLastUsedPublishProfile>
+    <NameOfLastUsedPublishProfile>C:\Users\Brandon\Desktop\Mentorship Program\Twitter-Showcase-WebAPI\Twitter-Showcase-WebAPI\Properties\PublishProfiles\bluebirdtwitterapp - Web Deploy.pubxml</NameOfLastUsedPublishProfile>
   </PropertyGroup>
 </Project>
