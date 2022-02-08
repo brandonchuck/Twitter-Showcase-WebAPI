@@ -57,4 +57,4 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 # Author
 
-Brandon Chuck | Full Stack Developer | [LinkedIn](https://www.linkedin.com/in/brandonchuck/) | [Personal Website](www.brandonchuck-dev.com)
+Brandon Chuck | Full Stack Developer | [LinkedIn](https://www.linkedin.com/in/brandonchuck/) | [Personal Website](https://www.brandonchuck-dev.com)
