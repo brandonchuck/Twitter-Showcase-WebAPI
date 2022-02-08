@@ -2,8 +2,8 @@
 
 # Overview
 
-- Starwars character API application built with React JS and Bootstrap.
-- Can search individual characters and view information on all characters from the API.
+- Search tweets by Twitter handle and by content
+- View random tweets from 5 popular accounts in the NFT twitterverse
 
 # Website
 
@@ -49,11 +49,6 @@ My goal for this project was to build a full-stack application that interacts wi
     
 
 In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 # Author
 
