@@ -85,7 +85,7 @@ const Random = () => {
             id="user-5"
             type="image"
             alt="user5"
-            src="https://pbs.twimg.com/profile_images/1486137594467471364/3IAXbv9Z_normal.jpg"
+            src="https://pbs.twimg.com/profile_images/1489709799206014979/0-m4LrvL_normal.jpg"
             value={`${USER_5}`}
             onClick={(e) => getRandomTweets(e)}
           />
