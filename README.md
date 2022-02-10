@@ -48,7 +48,13 @@ My goal for this project was to build a full-stack application that interacts wi
       - Public metrics (likes, comments, retweets)
     
 
-In the project directory, you can run:
+# Running it locally
+### Steps:
+1. Navigate to desired directory
+2. Use `git clone <repo link>` to clone repository onto your local machine
+3. Navigate to the `/frontend` directory and run the command `npm install` to get all necessary dependencies
+4. Navigate to the `/Twitter-Showcase-WebAPI` directory and run the command `dotnet run bulid`
+5. Open a browser and go to https://localhost:5001 for https or http://localhost:5000 for http 
 
 # Author
 
