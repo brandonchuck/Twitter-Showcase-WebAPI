@@ -53,8 +53,15 @@ My goal for this project was to build a full-stack application that interacts wi
 1. Navigate to desired directory
 2. Use `git clone <repo link>` to clone repository onto your local machine
 3. Navigate to the `/frontend` directory and run the command `npm install` to get all necessary dependencies
-4. Navigate to the `/Twitter-Showcase-WebAPI` directory and run the command `dotnet run bulid`
-5. Open a browser and go to https://localhost:5001 for https or http://localhost:5000 for http 
+4. Get apiKey and secretKey from a Twitter Developer Portal
+    - If you do not have an account, signup for free and generate your apiKey and secretKey here: `https://developer.twitter.com/`
+5. Add apiKey and secretKey inside of the appsettings.json as folllows on the same level as "Logging":
+    - `"Twitter" : {
+                    "ApiKey" : "your key here", 
+                    "SecretKey" : "your key here"
+                  }`
+6. Navigate to the `/Twitter-Showcase-WebAPI` directory and run the command `dotnet run bulid`
+7. Open a browser and go to https://localhost:5001 for https or http://localhost:5000 for http 
 
 # Author
 
