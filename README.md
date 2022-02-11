@@ -28,7 +28,7 @@ My goal for this project was to build a full-stack application that interacts wi
 
 - Detailed Features:
     - Authenticate with Twitter API v2 using RestSharp and basic authentication
-      - Internal API created with ASP.NET Web API to interact with Twitter API v2 
+      - Internal API created with ASP.NET Core Web API to interact with Twitter API v2 
     - Query the Twitter API v2 to return a user's usertimeline of tweets
       - Created custom UserTimeline C# object to represent JSON response from Twitter
       - Deserialize JSON response and manipulate fields to generate list of custom TweetObjects to return to frontend
