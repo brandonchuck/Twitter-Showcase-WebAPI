@@ -20,6 +20,11 @@ const Random = () => {
     setRandomTweets(res.data);
   }
 
+  async function getProfilePictures(username) {
+    let res = await axios.get(`api/tweets/search/random?username=${username}`);
+    return res.data;
+  }
+
   return (
     <Container className="random-user-container">
       <Row className="random-user-header">
