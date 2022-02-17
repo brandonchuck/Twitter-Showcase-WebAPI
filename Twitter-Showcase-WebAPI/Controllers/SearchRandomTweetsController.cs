@@ -41,7 +41,7 @@ namespace Twitter_Showcase_WebAPI.Controllers
             return JsonSerializer.Serialize(randomTweets);
         }
 
-        [HttpGet]
+        [HttpGet("profile-picture")]
         public async Task<string> GetRandomUserProfilePicture([FromQuery] string username)
         {
             string authToken = await _twitterAuthorizationService.GetBearerToken(_configuration["Twitter:ApiKey"], _configuration["Twitter:SecretKey"]);

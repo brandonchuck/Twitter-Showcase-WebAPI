@@ -12,6 +12,8 @@ const Random = () => {
   const USER_4 = "PGodjira";
   const USER_5 = "AbsoluteSaltETH";
 
+  let profilePicture_USER1 = getProfilePictures(USER_1);
+
   async function getRandomTweets(e) {
     e.preventDefault();
     let res = await axios.get(
@@ -21,8 +23,15 @@ const Random = () => {
   }
 
   async function getProfilePictures(username) {
-    let res = await axios.get(`api/tweets/search/random?username=${username}`);
-    return res.data;
+    let res = await axios.get(
+      `api/tweets/search/random/profile-picture?username=${username}`
+    );
+
+    console.log(res.data);
+    let profilePicture = res.data.includes.users[0].profile_image_url;
+    console.log(profilePicture);
+    console.log(typeof profilePicture);
+    return profilePicture;
   }
 
   return (
@@ -34,7 +43,7 @@ const Random = () => {
             id="user-1"
             type="image"
             alt="user1"
-            src="https://pbs.twimg.com/profile_images/1268176490979561472/aorwOh3s_normal.jpg"
+            src={profilePicture_USER1}
             value={`${USER_1}`}
             onClick={(e) => getRandomTweets(e)}
           />
@@ -48,12 +57,12 @@ const Random = () => {
             id="user-2"
             type="image"
             alt="user2"
-            src="https://pbs.twimg.com/profile_images/1470891016790052865/9Bat2HMQ_normal.jpg"
-            value={`${USER_2}`}
+            src={getProfilePictures(USER_2)}
+            // value={`${USER_2}`}
             onClick={(e) => getRandomTweets(e)}
           />
           <label className="user-label" htmlFor="user-2">
-            Shan
+            {USER_2}
           </label>
         </Col>
         <Col>
@@ -62,12 +71,12 @@ const Random = () => {
             id="user-3"
             type="image"
             alt="user3"
-            src="https://pbs.twimg.com/profile_images/1484414951032868867/6pUgEraw_normal.jpg"
+            src={`${getProfilePictures(USER_3)}`}
             value={`${USER_3}`}
             onClick={(e) => getRandomTweets(e)}
           />
           <label className="user-label" htmlFor="user-3">
-            Dysto Apez
+            {USER_3}
           </label>
         </Col>
         <Col>
@@ -76,7 +85,7 @@ const Random = () => {
             id="user-4"
             type="image"
             alt="user4"
-            src="https://pbs.twimg.com/profile_images/1486998994371121153/7frJOAEP_normal.jpg"
+            src={getProfilePictures(USER_4)}
             value={`${USER_4}`}
             onClick={(e) => getRandomTweets(e)}
           />
@@ -90,7 +99,7 @@ const Random = () => {
             id="user-5"
             type="image"
             alt="user5"
-            src="https://pbs.twimg.com/profile_images/1489709799206014979/0-m4LrvL_normal.jpg"
+            src={getProfilePictures(USER_5)}
             value={`${USER_5}`}
             onClick={(e) => getRandomTweets(e)}
           />

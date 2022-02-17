@@ -42,7 +42,7 @@ namespace Twitter_Showcase_WebAPI.Services
 
             var client = new RestClient(options);
 
-            var request = new RestRequest($"tweets/search/recent?user.fields=profile_image_url&expansions=author_id&query=from:{username}");
+            var request = new RestRequest($"tweets/search/recent?query=from:{username}&user.fields=profile_image_url&expansions=author_id");
 
             request.AddHeader("Authorization", $"Bearer {bearerToken}");
 

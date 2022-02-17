@@ -9,7 +9,6 @@ namespace Twitter_Showcase_WebAPI.Models
     {
         public Tweet[] data { get; set; }
         public IncludesKey includes { get; set; }
-        //public Metadata meta { get; set; }
     }
 
     public class Tweet

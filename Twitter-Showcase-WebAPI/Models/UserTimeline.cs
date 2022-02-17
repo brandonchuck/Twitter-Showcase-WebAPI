@@ -7,7 +7,6 @@ namespace Twitter_Showcase_WebAPI.Models
     {
         public TweetData[] data { get; set; }
         public Includes includes { get; set; }
-        public Metadata meta { get; set; }
     }
 
     // data
@@ -59,15 +58,5 @@ namespace Twitter_Showcase_WebAPI.Models
         public string profile_image_url { get; set; }
         public string id { get; set; }
         public string name { get; set; }
-    }
-
-    // metadata
-    public class Metadata
-    {
-        public string oldest_id { get; set; }
-        public string newest_id { get; set; }
-        public int result_count { get; set; }
-        public string? next_token { get; set; }
-        public string? previous_token { get; set; }
     }
 }
