@@ -37,7 +37,7 @@ namespace Twitter_Showcase_WebAPI.Controllers
                 return NotFound("Content not found");
             }
 
-            var tweets = _formatTweetService.GetTweets(recentTweets);
+            var tweets = _formatTweetService.GetFormattedTweets(recentTweets);
 
             return Ok(JsonSerializer.Serialize(tweets));
         }

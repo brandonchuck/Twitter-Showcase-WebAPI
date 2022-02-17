@@ -8,8 +8,9 @@ namespace Twitter_Showcase_WebAPI.Services
     public class FormatTweetService : IFormatTweetService
     {
 
-        public List<TweetObject> GetTweets(UserTimeline timeline)
+        public List<TweetObject> GetFormattedTweets(UserTimeline timeline)
         {
+
             List<TweetObject> tweets = timeline.data.Select(x =>
             {
                 UserData currentUser = this.GetCurrentUser(timeline, x);
@@ -62,34 +63,13 @@ namespace Twitter_Showcase_WebAPI.Services
                             }
                         }
                     }
-                } 
+                }
             }
             else
             {
                 images = null;
                 videos = null;
             }
-        }
-
-        public List<TweetObject> GetRandomTweets(UserTimeline timeline)
-        {
-            List<TweetObject> randomTweets = new List<TweetObject>();
-
-            List<TweetObject> tweets = this.GetTweets(timeline);
-
-            while (randomTweets.Count != 15)
-            {
-                Random rand = new Random();
-                int randomInt = rand.Next(0, tweets.Count);
-
-                if (!randomTweets.Contains(tweets[randomInt]))
-                {
-                    randomTweets.Add(tweets[randomInt]);
-                }
-            }
-
-            return randomTweets;
-
         }
 
         public string FormatDate(DateTime createdAt)

@@ -14,16 +14,16 @@ namespace Twitter_Showcase_WebAPI.Controllers
         private readonly ITwitterAuthorizationService _twitterAuthorizationService;
         private readonly IUserDetailsService _userDetailsService;
         private readonly IUserTimelineService _userTimelineService;
-        private readonly IFormatTweetService _formatTweetService;
+        private readonly IRandomTweetsService _randomTweetsService;
         private readonly IConfiguration _configuration;
 
 
-        public SearchRandomTweetsController(ITwitterAuthorizationService twitterAuthorizationService, IUserDetailsService userDetailsService, IUserTimelineService userTimelineService, IFormatTweetService formatTweetService, IConfiguration configuration)
+        public SearchRandomTweetsController(ITwitterAuthorizationService twitterAuthorizationService, IUserDetailsService userDetailsService, IUserTimelineService userTimelineService, IRandomTweetsService randomTweetsService, IConfiguration configuration)
         {
             _twitterAuthorizationService = twitterAuthorizationService;
             _userDetailsService = userDetailsService;
             _userTimelineService = userTimelineService;
-            _formatTweetService = formatTweetService;
+            _randomTweetsService = randomTweetsService;
             _configuration = configuration;
         }
 
@@ -36,9 +36,19 @@ namespace Twitter_Showcase_WebAPI.Controllers
             
             var userTimeline = await _userTimelineService.GetUserTimeline(userDetails.data.id, authToken);
 
-            var randomTweets = _formatTweetService.GetRandomTweets(userTimeline);
+            var randomTweets = _randomTweetsService.GetRandomTweets(userTimeline);
 
             return JsonSerializer.Serialize(randomTweets);
+        }
+
+        [HttpGet]
+        public async Task<string> GetRandomUserProfilePicture([FromQuery] string username)
+        {
+            string authToken = await _twitterAuthorizationService.GetBearerToken(_configuration["Twitter:ApiKey"], _configuration["Twitter:SecretKey"]);
+
+            var profilePicture = await _randomTweetsService.GetRandomUserProfilePicture(username, authToken);
+
+            return JsonSerializer.Serialize(profilePicture);
         }
     }
 }

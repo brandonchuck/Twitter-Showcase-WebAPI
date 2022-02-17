@@ -53,7 +53,7 @@ namespace Twitter_Showcase_WebAPI.Controllers
                 return NotFound("User does not have any tweets");
             }
 
-            var tweets = _formatTweetService.GetTweets(userTimeline);
+            var tweets = _formatTweetService.GetFormattedTweets(userTimeline);
 
             return Ok(JsonSerializer.Serialize(tweets));
 
