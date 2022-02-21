@@ -11,6 +11,7 @@ namespace Twitter_Showcase_WebAPI.Services
         public const string BASE_URL = "https://api.twitter.com/2";
         public async Task<UserDetails> GetUserDetails(string searchTerm, string bearerToken)
         {
+            const string expansions = "user.fields=profile_image_url";
 
             var options = new RestClientOptions(BASE_URL)
             {
@@ -19,7 +20,7 @@ namespace Twitter_Showcase_WebAPI.Services
 
             var client = new RestClient(options);
 
-            var request = new RestRequest($"users/by/username/{searchTerm}?user.fields=profile_image_url");
+            var request = new RestRequest($"users/by/username/{searchTerm}?{expansions}");
 
             request.AddHeader("Authorization", $"Bearer {bearerToken}");
 
