@@ -6,7 +6,7 @@ namespace Twitter_Showcase_WebAPI.Services
 {
     public class UserTimelineService : IUserTimelineService
     {
-        public async Task<UserTimeline> GetUserTimeline(string userId, string bearerToken)
+        public async Task<UserTimeline> GetUserTimelineByUserId(string userId, string bearerToken)
         {
             var options = new RestClientOptions("https://api.twitter.com/2")
             {
@@ -23,5 +23,7 @@ namespace Twitter_Showcase_WebAPI.Services
 
             return timeline;
         }
+
     }
+
 }

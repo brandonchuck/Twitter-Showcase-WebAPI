@@ -30,25 +30,6 @@ namespace Twitter_Showcase_WebAPI.Services
             }
 
             return randomTweets;
-
-        }
-
-        public async Task<UserProfilePicture> GetRandomUserProfilePicture(string username, string bearerToken)
-        {
-            var options = new RestClientOptions("https://api.twitter.com/2")
-            {
-                Timeout = 3000,
-            };
-
-            var client = new RestClient(options);
-
-            var request = new RestRequest($"tweets/search/recent?query=from:{username}&user.fields=profile_image_url&expansions=author_id");
-
-            request.AddHeader("Authorization", $"Bearer {bearerToken}");
-
-            var profilePicture = await client.GetAsync<UserProfilePicture>(request);
-
-            return profilePicture;
         }
 
     }

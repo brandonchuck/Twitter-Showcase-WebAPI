@@ -1,4 +1,5 @@
-﻿using System.Text.Json;
+﻿using System.Collections.Generic;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -27,28 +28,42 @@ namespace Twitter_Showcase_WebAPI.Controllers
             _configuration = configuration;
         }
 
+        // username passed client
         [HttpGet]
         public async Task<string> GetRandomTweets([FromQuery] string user)
         {
             string authToken = await _twitterAuthorizationService.GetBearerToken(_configuration["Twitter:ApiKey"], _configuration["Twitter:SecretKey"]);
             
-            UserDetails userDetails = await _userDetailsService.GetUserId(user, authToken);
+            UserDetails userDetails = await _userDetailsService.GetUserDetails(user, authToken);
             
-            var userTimeline = await _userTimelineService.GetUserTimeline(userDetails.data.id, authToken);
+            var userTimeline = await _userTimelineService.GetUserTimelineByUserId(userDetails.data.id, authToken);
 
             var randomTweets = _randomTweetsService.GetRandomTweets(userTimeline);
 
             return JsonSerializer.Serialize(randomTweets);
         }
 
-        [HttpGet("profile-picture")]
-        public async Task<string> GetRandomUserProfilePicture([FromQuery] string username)
+        [HttpGet]
+        [Route("random-user-profiles")]
+        public async Task<string> GetRandomUserProfiles()
         {
+            List<UserDetails> randomUsers = new List<UserDetails>();
+
+            List<string> usernames = new List<string>
+            {
+                "garyvee", "shanicucic96", "DystoApez", "PGodjira", "AbsoluteSaltETH"
+            };
+
             string authToken = await _twitterAuthorizationService.GetBearerToken(_configuration["Twitter:ApiKey"], _configuration["Twitter:SecretKey"]);
 
-            var profilePicture = await _randomTweetsService.GetRandomUserProfilePicture(username, authToken);
+            foreach (string u in usernames)
+            {
+                var user = await _userDetailsService.GetUserDetails(u, authToken);
+                randomUsers.Add(user);
+            }
 
-            return JsonSerializer.Serialize(profilePicture);
+            return JsonSerializer.Serialize(randomUsers);
         }
+
     }
 }

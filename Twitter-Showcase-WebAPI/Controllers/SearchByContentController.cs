@@ -26,7 +26,7 @@ namespace Twitter_Showcase_WebAPI.Controllers
 
 
         [HttpGet]
-        public async Task<ActionResult> GetRecentTweets([FromQuery] string searchTerm)
+        public async Task<ActionResult> GetTweetsByContent([FromQuery] string searchTerm)
         {
             string authToken = await _twitterAuthorizationService.GetBearerToken(_configuration["Twitter:ApiKey"], _configuration["Twitter:SecretKey"]);
             

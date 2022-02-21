@@ -5,6 +5,6 @@ namespace Twitter_Showcase_WebAPI.Services
 {
     public interface IUserTimelineService
     {
-        public Task<UserTimeline> GetUserTimeline(string userId, string bearerToken);
+        public Task<UserTimeline> GetUserTimelineByUserId(string userId, string bearerToken);
     }
 }

@@ -9,7 +9,5 @@ namespace Twitter_Showcase_WebAPI.Services
     public interface IRandomTweetsService
     {
         public List<TweetObject> GetRandomTweets(UserTimeline timeline);
-        public Task<UserProfilePicture> GetRandomUserProfilePicture(string username, string bearerToken);
-
     }
 }

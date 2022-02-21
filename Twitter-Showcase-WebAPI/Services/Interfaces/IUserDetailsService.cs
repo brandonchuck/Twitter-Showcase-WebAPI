@@ -6,6 +6,7 @@ namespace Twitter_Showcase_WebAPI.Services
 {
     public interface IUserDetailsService
     {
-        public Task<UserDetails> GetUserId(string searchTerm, string bearerToken);
+        public Task<UserDetails> GetUserDetails(string searchTerm, string bearerToken);
+
     }
 }
