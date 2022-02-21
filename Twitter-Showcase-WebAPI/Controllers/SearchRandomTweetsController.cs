@@ -1,4 +1,5 @@
-﻿using System.Text.Json;
+﻿using System.Collections.Generic;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -14,31 +15,55 @@ namespace Twitter_Showcase_WebAPI.Controllers
         private readonly ITwitterAuthorizationService _twitterAuthorizationService;
         private readonly IUserDetailsService _userDetailsService;
         private readonly IUserTimelineService _userTimelineService;
-        private readonly IFormatTweetService _formatTweetService;
+        private readonly IRandomTweetsService _randomTweetsService;
         private readonly IConfiguration _configuration;
 
 
-        public SearchRandomTweetsController(ITwitterAuthorizationService twitterAuthorizationService, IUserDetailsService userDetailsService, IUserTimelineService userTimelineService, IFormatTweetService formatTweetService, IConfiguration configuration)
+        public SearchRandomTweetsController(ITwitterAuthorizationService twitterAuthorizationService, IUserDetailsService userDetailsService, IUserTimelineService userTimelineService, IRandomTweetsService randomTweetsService, IConfiguration configuration)
         {
             _twitterAuthorizationService = twitterAuthorizationService;
             _userDetailsService = userDetailsService;
             _userTimelineService = userTimelineService;
-            _formatTweetService = formatTweetService;
+            _randomTweetsService = randomTweetsService;
             _configuration = configuration;
         }
 
+        // username passed client
         [HttpGet]
         public async Task<string> GetRandomTweets([FromQuery] string user)
         {
             string authToken = await _twitterAuthorizationService.GetBearerToken(_configuration["Twitter:ApiKey"], _configuration["Twitter:SecretKey"]);
             
-            UserDetails userDetails = await _userDetailsService.GetUserId(user, authToken);
+            UserDetails userDetails = await _userDetailsService.GetUserDetails(user, authToken);
             
-            var userTimeline = await _userTimelineService.GetUserTimeline(userDetails.data.id, authToken);
+            var userTimeline = await _userTimelineService.GetUserTimelineByUserId(userDetails.data.id, authToken);
 
-            var randomTweets = _formatTweetService.GetRandomTweets(userTimeline);
+            var randomTweets = _randomTweetsService.GetRandomTweets(userTimeline);
 
             return JsonSerializer.Serialize(randomTweets);
         }
+
+        [HttpGet]
+        [Route("random-user-profiles")]
+        public async Task<string> GetRandomUserProfiles()
+        {
+            List<UserDetails> randomUsers = new List<UserDetails>();
+
+            List<string> usernames = new List<string>
+            {
+                "garyvee", "shanicucic96", "DystoApez", "PGodjira", "AbsoluteSaltETH"
+            };
+
+            string authToken = await _twitterAuthorizationService.GetBearerToken(_configuration["Twitter:ApiKey"], _configuration["Twitter:SecretKey"]);
+
+            foreach (string u in usernames)
+            {
+                var user = await _userDetailsService.GetUserDetails(u, authToken);
+                randomUsers.Add(user);
+            }
+
+            return JsonSerializer.Serialize(randomUsers);
+        }
+
     }
 }

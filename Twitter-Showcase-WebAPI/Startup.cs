@@ -25,6 +25,7 @@ namespace Twitter_Showcase_WebAPI
             services.AddScoped<IUserTimelineService, UserTimelineService>();
             services.AddScoped<IContentSearchService, ContentSearchService>();
             services.AddScoped<IFormatTweetService, FormatTweetService>();
+            services.AddScoped<IRandomTweetsService, RandomTweetsService>();
 
             services.AddControllers();
 

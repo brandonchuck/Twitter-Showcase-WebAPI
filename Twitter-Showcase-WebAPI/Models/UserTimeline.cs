@@ -59,5 +59,4 @@ namespace Twitter_Showcase_WebAPI.Models
         public string id { get; set; }
         public string name { get; set; }
     }
-
 }
