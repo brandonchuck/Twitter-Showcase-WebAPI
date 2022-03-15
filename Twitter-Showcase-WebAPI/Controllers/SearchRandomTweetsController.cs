@@ -28,7 +28,7 @@ namespace Twitter_Showcase_WebAPI.Controllers
             _configuration = configuration;
         }
 
-        // username passed client
+        // username passed from client
         [HttpGet]
         public async Task<string> GetRandomTweets([FromQuery] string user)
         {

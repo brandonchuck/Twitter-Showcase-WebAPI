@@ -10,13 +10,17 @@ namespace Twitter_Showcase_WebAPI.Services
     public class RandomTweetsService : IRandomTweetsService
     {
 
-        FormatTweetService formatTweetService = new FormatTweetService();
+        private readonly IFormatTweetService _formatTweetService;
+        public RandomTweetsService(IFormatTweetService formatTweetService)
+        {
+            _formatTweetService = formatTweetService;
+        }
 
         public List<TweetObject> GetRandomTweets(UserTimeline timeline)
         {
             List<TweetObject> randomTweets = new List<TweetObject>();
 
-            List<TweetObject> tweets = formatTweetService.GetFormattedTweets(timeline);
+            List<TweetObject> tweets = _formatTweetService.GetFormattedTweets(timeline);
 
             while (randomTweets.Count != 15)
             {
