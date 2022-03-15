@@ -1,7 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Twitter_Showcase_WebAPI.Models;
 using RestSharp;
-using System.Text.Json;
 
 namespace Twitter_Showcase_WebAPI.Services
 {

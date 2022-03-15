@@ -5,7 +5,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Twitter_Showcase_WebAPI.Services;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
-using System.IO;
 
 namespace Twitter_Showcase_WebAPI
 {
