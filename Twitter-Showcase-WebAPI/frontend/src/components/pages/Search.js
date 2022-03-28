@@ -16,29 +16,25 @@ const Search = () => {
     e.preventDefault();
 
     if (searchChoice === "Handle") {
-      await axios
+      const { data } = await axios
         .get(`api/tweets/search/username?searchTerm=${searchTerm}`)
-        .then((res) => {
-          setTweets(res.data);
-          setErrorMessage("");
-        })
         .catch((err) => {
           if (err.response.status >= 400) {
             setErrorMessage(err.response.data);
           }
         });
+      setTweets(data);
+      setErrorMessage("");
     } else {
-      await axios
+      const { data } = await axios
         .get(`api/tweets/search/content?searchTerm=${searchTerm}`)
-        .then((res) => {
-          setTweets(res.data);
-          setErrorMessage("");
-        })
         .catch((err) => {
           if (err.response.status >= 400) {
             setErrorMessage(err.response.data);
           }
         });
+      setTweets(data);
+      setErrorMessage("");
     }
     setSearchTerm("");
   }

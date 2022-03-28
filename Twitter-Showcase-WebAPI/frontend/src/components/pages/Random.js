@@ -9,20 +9,20 @@ const Random = () => {
 
   useEffect(() => {
     const getUsers = async () => {
-      await axios
-        .get(`api/tweets/search/random/random-user-profiles`) // get list of random UserDetails objects
-        .then(({ data }) => setRandomUsers(data));
+      const { data } = await axios.get(
+        `api/tweets/search/random/random-user-profiles`
+      ); // get list of random UserDetails objects
+      setRandomUsers(data);
     };
     getUsers();
   }, []);
 
   async function handleClick(e) {
     e.preventDefault();
-    await axios
-      .get(
-        `api/tweets/search/random?user=${e.target.value}` // pass user's username to /random endpoint in server
-      )
-      .then(({ data }) => setRandomTweets(data));
+    const { data } = await axios.get(
+      `api/tweets/search/random?user=${e.target.value}` // pass user's username to /random endpoint in server
+    );
+    setRandomTweets(data);
   }
 
   return (
